@@ -19,7 +19,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Nome"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Nacionalidade"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="@+id/etNome"
         app:layout_constraintStart_toStartOf="@+id/etNome"
         app:layout_constraintTop_toBottomOf="@+id/etNome" />
@@ -55,7 +55,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Cidade Nascimento"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="@+id/spEstadoCivil"
         app:layout_constraintStart_toStartOf="@+id/etNacionalidade"
         app:layout_constraintTop_toBottomOf="@+id/spEstadoCivil" />
@@ -67,7 +67,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Data Nascimento"
-        android:inputType="textPassword|date"
+        android:inputType="date"
         app:layout_constraintEnd_toEndOf="@+id/etCidadeNascimento"
         app:layout_constraintStart_toStartOf="@+id/etCidadeNascimento"
         app:layout_constraintTop_toBottomOf="@+id/etCidadeNascimento" />
@@ -79,7 +79,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Telefone Celular"
-        android:inputType="textPersonName"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="@+id/etDataNascimento"
         app:layout_constraintStart_toStartOf="@+id/etDataNascimento"
         app:layout_constraintTop_toBottomOf="@+id/etDataNascimento" />
@@ -91,7 +91,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Telefone Fixo"
-        android:inputType="textPersonName"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="@+id/etTelefoneCelular"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/etTelefoneCelular"
@@ -104,7 +104,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/etTelefoneFixo"
         app:layout_constraintStart_toStartOf="@+id/etTelefoneFixo"
         app:layout_constraintTop_toBottomOf="@+id/etTelefoneFixo" />
@@ -116,7 +116,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Endereço"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="@+id/etEmail"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/etEmail"
