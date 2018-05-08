@@ -3,4 +3,21 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="title_activity_act_info_pessoais">Informações Pessoais</string>
+
+    <string name="title_info_pessoais">Info</string>
+    <string name="title_objetivo">Objetivo</string>
+    <string name="title_formacao">Formação</string>
+    <string name="title_experiencia">Experiência</string>
+    <string name="title_info">Informações Pessoais</string>
+
+    <string name="button_ok">OK</string>
+
+    <string name="message_aviso">Aviso</string>
+    <string name="message_erro">Erro</string>
+    <string name="message_sim">Sim</string>
+    <string name="message_nao">Não</string>
+    <string name="message_campos_invalidos_brancos">Existem campos inválidos ou em branco</string>
+    <string name="message_dados_atualizados_sucesso">Dados atualizados com sucesso!!!</string>
 </resources>

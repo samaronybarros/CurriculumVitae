@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:id="@+id/navigation_info_pessoais"
+        android:icon="@drawable/ic_face_black_24dp"
+        android:title="@string/title_info_pessoais" />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:id="@+id/navigation_objetivo"
+        android:icon="@mipmap/ic_objetivo_black_24dp"
+        android:title="@string/title_objetivo" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:id="@+id/navigation_formacao"
+        android:icon="@mipmap/ic_capelo_black_24dp"
+        android:title="@string/title_formacao" />
+    <item
+        android:id="@+id/navigation_experiencia"
+        android:icon="@drawable/ic_work_black_24dp"
+        android:title="@string/title_experiencia" />
 
 </menu>

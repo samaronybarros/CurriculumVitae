@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.ActInfoPessoais"
+    tools:showIn="@layout/activity_act_info_pessoais">
+
+    <EditText
+        android:id="@+id/etNome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Nome"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etNacionalidade"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Nacionalidade"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etNome"
+        app:layout_constraintStart_toStartOf="@+id/etNome"
+        app:layout_constraintTop_toBottomOf="@+id/etNome" />
+
+    <Spinner
+        android:id="@+id/spEstadoCivil"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:entries="@array/list_estado_civil"
+        app:layout_constraintEnd_toEndOf="@+id/etNacionalidade"
+        app:layout_constraintStart_toStartOf="@+id/etNacionalidade"
+        app:layout_constraintTop_toBottomOf="@+id/etNacionalidade" />
+
+    <EditText
+        android:id="@+id/etCidadeNascimento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Cidade Nascimento"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/spEstadoCivil"
+        app:layout_constraintStart_toStartOf="@+id/etNacionalidade"
+        app:layout_constraintTop_toBottomOf="@+id/spEstadoCivil" />
+
+    <EditText
+        android:id="@+id/etDataNascimento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Data Nascimento"
+        android:inputType="textPassword|date"
+        app:layout_constraintEnd_toEndOf="@+id/etCidadeNascimento"
+        app:layout_constraintStart_toStartOf="@+id/etCidadeNascimento"
+        app:layout_constraintTop_toBottomOf="@+id/etCidadeNascimento" />
+
+    <EditText
+        android:id="@+id/etTelefoneCelular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Telefone Celular"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etDataNascimento"
+        app:layout_constraintStart_toStartOf="@+id/etDataNascimento"
+        app:layout_constraintTop_toBottomOf="@+id/etDataNascimento" />
+
+    <EditText
+        android:id="@+id/etTelefoneFixo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Telefone Fixo"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etTelefoneCelular"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etTelefoneCelular"
+        app:layout_constraintTop_toBottomOf="@+id/etTelefoneCelular" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etTelefoneFixo"
+        app:layout_constraintStart_toStartOf="@+id/etTelefoneFixo"
+        app:layout_constraintTop_toBottomOf="@+id/etTelefoneFixo" />
+
+    <EditText
+        android:id="@+id/etEndereco"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Endereço"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etEmail"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/etEmail"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+    <Spinner
+        android:id="@+id/spTipoCNH"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:entries="@array/list_cnh"
+        app:layout_constraintEnd_toEndOf="@+id/etEndereco"
+        app:layout_constraintStart_toStartOf="@+id/etEndereco"
+        app:layout_constraintTop_toBottomOf="@+id/etEndereco" />
+</android.support.constraint.ConstraintLayout>
