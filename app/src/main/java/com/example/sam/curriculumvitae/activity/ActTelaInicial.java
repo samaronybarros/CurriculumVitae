@@ -22,10 +22,11 @@ public class ActTelaInicial extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_info_pessoais:
                     //mTextMessage.setText(R.string.title_info_pessoais);
-                    getScreenInfo();
+                    goToScreenInfo();
                     return true;
                 case R.id.navigation_objetivo:
-                    mTextMessage.setText(R.string.title_objetivo);
+                    //mTextMessage.setText(R.string.title_objetivo);
+                    goToScreenObjetivo();
                     return true;
                 case R.id.navigation_formacao:
                     mTextMessage.setText(R.string.title_formacao);
@@ -49,8 +50,13 @@ public class ActTelaInicial extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
-    public void getScreenInfo() {
+    public void goToScreenInfo() {
         Intent intent = new Intent(ActTelaInicial.this, ActInfoPessoais.class);
+        startActivity(intent);
+    }
+
+    public void goToScreenObjetivo() {
+        Intent intent = new Intent(ActTelaInicial.this, ActObjetivo.class);
         startActivity(intent);
     }
 }

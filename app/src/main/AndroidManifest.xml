@@ -21,6 +21,10 @@
         <activity
             android:name=".activity.ActInfoPessoais"
             android:label="@string/title_activity_act_info_pessoais"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ActObjetivo"
+            android:label="@string/title_activity_act_objetivo"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

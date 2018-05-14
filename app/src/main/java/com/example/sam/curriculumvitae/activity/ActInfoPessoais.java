@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -16,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.sam.curriculumvitae.R;
 import com.example.sam.curriculumvitae.database.DadosOpenHelper;
@@ -52,7 +49,7 @@ public class ActInfoPessoais extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_act_info_pessoais);
-        Toolbar toolbar = (Toolbar) findViewById(id.toolbar);
+        Toolbar toolbar = findViewById(id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle(string.title_info);
@@ -64,6 +61,7 @@ public class ActInfoPessoais extends AppCompatActivity {
         });
 
         mensagem = new Mensagem();
+        flagInsereAltera = false;
 
         etNome              = (EditText) findViewById(id.etNome);
         etNacionalidade     = (EditText) findViewById(id.etNacionalidade);
@@ -107,7 +105,7 @@ public class ActInfoPessoais extends AppCompatActivity {
     }
 
     private boolean validaCampos() {
-        boolean ret = false;
+        boolean ret;
 
         String nome             = etNome.getText().toString();
         String nacionalidade    = etNacionalidade.getText().toString();
@@ -193,6 +191,7 @@ public class ActInfoPessoais extends AppCompatActivity {
 
     private void insereDados() {
         infoPessoais = infoPessoaisRepositorio.buscar();
+
         if (infoPessoais != null) {
             flagInsereAltera = true;
 
@@ -208,6 +207,7 @@ public class ActInfoPessoais extends AppCompatActivity {
             spTipoCNH.setSelection(getPosTipoCNH(infoPessoais.tipoCNH));
         } else {
             flagInsereAltera = false;
+            infoPessoais = new InfoPessoais();
         }
     }
 
@@ -230,10 +230,10 @@ public class ActInfoPessoais extends AppCompatActivity {
         return ret;
     }
 
-    private int getPosTipoCNH(String spinnertipoCNH) {
+    private int getPosTipoCNH(String spinnerTipoCNH) {
         int ret = 0;
 
-        switch (spinnertipoCNH) {
+        switch (spinnerTipoCNH) {
             case ("A"):
                 ret = 1; break;
             case ("B"):

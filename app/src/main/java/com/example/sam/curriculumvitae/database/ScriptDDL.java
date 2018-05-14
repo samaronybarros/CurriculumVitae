@@ -24,7 +24,26 @@ public class ScriptDDL {
     public static String dropTableInfoPessoais() {
         StringBuilder sql = new StringBuilder();
 
-        sql.append(" DROP TABLE INFO_PESSOAIS; ");
+        sql.append(" DROP TABLE IF EXISTS INFO_PESSOAIS; ");
+
+        return sql.toString();
+    }
+
+    public static String createTableObjetivo() {
+        StringBuilder sql = new StringBuilder();
+
+        sql.append(" CREATE TABLE IF NOT EXISTS OBJETIVO( ");
+        sql.append("    CODIGO               INTEGER         PRIMARY KEY AUTOINCREMENT NOT NULL,");
+        sql.append("    DESCRICAO            VARCHAR(250)    NOT NULL DEFAULT('') ");
+        sql.append(" ) ");
+
+        return sql.toString();
+    }
+
+    public static String dropTableObjetivo() {
+        StringBuilder sql = new StringBuilder();
+
+        sql.append(" DROP TABLE IF EXISTS OBJETIVO; ");
 
         return sql.toString();
     }
