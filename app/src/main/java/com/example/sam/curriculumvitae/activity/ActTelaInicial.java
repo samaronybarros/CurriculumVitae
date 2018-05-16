@@ -29,7 +29,8 @@ public class ActTelaInicial extends AppCompatActivity {
                     goToScreenObjetivo();
                     return true;
                 case R.id.navigation_formacao:
-                    mTextMessage.setText(R.string.title_formacao);
+                    //mTextMessage.setText(R.string.title_formacao);
+                    goToScreenFormacao();
                     return true;
                 case R.id.navigation_experiencia:
                     mTextMessage.setText(R.string.title_experiencia);
@@ -57,6 +58,11 @@ public class ActTelaInicial extends AppCompatActivity {
 
     public void goToScreenObjetivo() {
         Intent intent = new Intent(ActTelaInicial.this, ActObjetivo.class);
+        startActivity(intent);
+    }
+
+    public void goToScreenFormacao() {
+        Intent intent = new Intent(ActTelaInicial.this, ActFormacao.class);
         startActivity(intent);
     }
 }

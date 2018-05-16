@@ -123,9 +123,9 @@ public class ScriptDDL {
         StringBuilder sql = new StringBuilder();
 
         sql.append(" CREATE TABLE IF NOT EXISTS QUALIFICACAO( ");
-        sql.append("    CODIGO           INTEGER         PRIMARY KEY AUTOINCREMENT NOT NULL,");
-        sql.append("    ATIVIDADE        VARCHAR(250)    NOT NULL DEFAULT(''), ");
-        sql.append("    DESCRICAO        VARCHAR(10)     NOT NULL DEFAULT('')  ");
+        sql.append("    CODIGO           INTEGER          PRIMARY KEY AUTOINCREMENT NOT NULL,");
+        sql.append("    ATIVIDADE        VARCHAR(50)      NOT NULL DEFAULT(''), ");
+        sql.append("    DESCRICAO        VARCHAR(100)     NOT NULL DEFAULT('')  ");
         sql.append(" ) ");
 
         return sql.toString();

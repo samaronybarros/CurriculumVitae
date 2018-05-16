@@ -25,6 +25,14 @@
         <activity
             android:name=".activity.ActObjetivo"
             android:label="@string/title_activity_act_objetivo"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ActFormacao"
+            android:label="@string/title_activity_act_formacao"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ActFormacaoOperation"
+            android:label="@string/title_activity_act_formacao_operation"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

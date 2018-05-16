@@ -21,4 +21,6 @@
     <string name="message_campos_invalidos_brancos">Existem campos inválidos ou em branco</string>
     <string name="message_dados_atualizados_sucesso">Dados atualizados com sucesso!!!</string>
     <string name="title_activity_act_objetivo">ActObjetivo</string>
+    <string name="title_activity_act_formacao">ActFormacao</string>
+    <string name="title_activity_act_formacao_operation">ActFormacaoOperation</string>
 </resources>
