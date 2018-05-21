@@ -6,20 +6,30 @@
     <item
         android:id="@+id/navigation_info_pessoais"
         android:icon="@drawable/ic_face_black_24dp"
-        android:title="@string/title_info_pessoais" />
+        android:title="@string/title_info_pessoais"
+        app:showAsAction="always|withText" />
 
     <item
         android:id="@+id/navigation_objetivo"
         android:icon="@mipmap/ic_objetivo_black_24dp"
-        android:title="@string/title_objetivo" />
+        android:title="@string/title_objetivo"
+        app:showAsAction="always|withText"/>
 
     <item
         android:id="@+id/navigation_formacao"
         android:icon="@mipmap/ic_capelo_black_24dp"
-        android:title="@string/title_formacao" />
+        android:title="@string/title_formacao"
+        app:showAsAction="always|withText" />
     <item
         android:id="@+id/navigation_experiencia"
         android:icon="@drawable/ic_work_black_24dp"
-        android:title="@string/title_experiencia" />
+        android:title="@string/title_experiencia"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/navigation_outros"
+        android:icon="@drawable/ic_dehaze_black_24dp"
+        android:title="@string/title_outros"
+        app:showAsAction="always|withText" />
+
 
 </menu>

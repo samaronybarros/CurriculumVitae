@@ -11,6 +11,11 @@
     <string name="title_formacao">Formação</string>
     <string name="title_experiencia">Experiência</string>
     <string name="title_info">Informações Pessoais</string>
+    <string name="title_curso">Cursos</string>
+    <string name="title_qualificacao">Qualificação</string>
+    <string name="title_idioma">Idioma</string>
+
+    <string name="title_outros">Outros</string>
 
     <string name="button_ok">OK</string>
     <string name="button_excluir">Excluir</string>
@@ -32,5 +37,13 @@
     <string name="title_activity_act_formacao_operation">ActFormacaoOperation</string>
     <string name="title_activity_act_experiencia">ActExperiencia</string>
     <string name="title_activity_act_experiencia_operation">ActExperienciaOperation</string>
+    <string name="title_activity_act_outros">ActOutros</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_act_tela_inicial">ActTelaInicial</string>
 
 </resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_info_pessoais"
+            android:icon="@drawable/ic_face_black_24dp"
+            android:title="@string/title_info" />
+        <item
+            android:id="@+id/nav_objetivo"
+            android:icon="@mipmap/ic_objetivo_black_24dp"
+            android:title="@string/title_objetivo" />
+        <item
+            android:id="@+id/nav_formacao"
+            android:icon="@mipmap/ic_capelo_black_24dp"
+            android:title="@string/title_formacao" />
+        <item
+            android:id="@+id/nav_experiencia"
+            android:icon="@drawable/ic_work_black_24dp"
+            android:title="@string/title_experiencia" />
+        <item
+            android:id="@+id/nav_curso"
+            android:icon="@mipmap/ic_curso_black_24dp"
+            android:title="@string/title_curso" />
+        <item
+            android:id="@+id/nav_qualificacao"
+            android:icon="@mipmap/ic_qualificacao_black_24dp"
+            android:title="@string/title_qualificacao" />
+        <item
+            android:id="@+id/nav_idioma"
+            android:icon="@mipmap/ic_idioma_black_24dp"
+            android:title="@string/title_idioma" />
+    </group>
+
+</menu>
