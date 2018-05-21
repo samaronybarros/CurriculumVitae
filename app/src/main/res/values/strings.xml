@@ -13,14 +13,24 @@
     <string name="title_info">Informações Pessoais</string>
 
     <string name="button_ok">OK</string>
+    <string name="button_excluir">Excluir</string>
 
     <string name="message_aviso">Aviso</string>
     <string name="message_erro">Erro</string>
     <string name="message_sim">Sim</string>
     <string name="message_nao">Não</string>
+    <string name="message_excluir">Excluir</string>
+    <string name="message_excluir_formacao">Deseja excluir a formação selecionada?</string>
+    <string name="message_excluir_experiencia">Deseja excluir a experiência selecionada?</string>
+    <string name="message_excluir_curso">Deseja excluir o curso selecionado?</string>
+    <string name="message_excluir_qualificacao">Deseja excluir a qualificação selecionada?</string>
+    <string name="message_excluir_idioma">Deseja excluir o idioma selecionado?</string>
     <string name="message_campos_invalidos_brancos">Existem campos inválidos ou em branco</string>
     <string name="message_dados_atualizados_sucesso">Dados atualizados com sucesso!!!</string>
     <string name="title_activity_act_objetivo">ActObjetivo</string>
     <string name="title_activity_act_formacao">ActFormacao</string>
     <string name="title_activity_act_formacao_operation">ActFormacaoOperation</string>
+    <string name="title_activity_act_experiencia">ActExperiencia</string>
+    <string name="title_activity_act_experiencia_operation">ActExperienciaOperation</string>
+
 </resources>

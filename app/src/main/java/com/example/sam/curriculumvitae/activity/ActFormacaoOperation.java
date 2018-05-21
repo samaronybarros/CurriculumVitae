@@ -77,6 +77,9 @@ public class ActFormacaoOperation extends AppCompatActivity {
             case (R.id.action_ok):
                 confirmar();
                 break;
+            case (R.id.action_excluir):
+                excluir();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -133,6 +136,24 @@ public class ActFormacaoOperation extends AppCompatActivity {
                 mensagem.alert(this, getString(R.string.message_erro), ex.getMessage());
             }
         }
+    }
+
+    private void excluir() {
+        try {
+            mensagem.msgYesNo(this, getString(R.string.message_excluir), getString(R.string.message_excluir_formacao), execExcluir());
+        } catch (Exception ex) {
+            mensagem.alert(this, getString(R.string.message_erro), ex.getMessage());
+        }
+    }
+
+    private Runnable execExcluir() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                formacaoRepositorio.excluir(formacao.codigo);
+                goToFormacaoScreen();
+            }
+        };
     }
 
     private void criarConexao() {

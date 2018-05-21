@@ -13,5 +13,6 @@ public class Experiencia implements Serializable {
 
     public Experiencia() {
         this.codigo = 0;
+        this.trabalhoAtual = "N";
     }
 }

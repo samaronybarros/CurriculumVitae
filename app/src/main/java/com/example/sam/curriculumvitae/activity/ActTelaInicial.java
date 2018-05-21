@@ -33,7 +33,8 @@ public class ActTelaInicial extends AppCompatActivity {
                     goToScreenFormacao();
                     return true;
                 case R.id.navigation_experiencia:
-                    mTextMessage.setText(R.string.title_experiencia);
+                    //mTextMessage.setText(R.string.title_experiencia);
+                    goToScreenExperiencia();
                     return true;
             }
             return false;
@@ -63,6 +64,11 @@ public class ActTelaInicial extends AppCompatActivity {
 
     public void goToScreenFormacao() {
         Intent intent = new Intent(ActTelaInicial.this, ActFormacao.class);
+        startActivity(intent);
+    }
+
+    public void goToScreenExperiencia() {
+        Intent intent = new Intent(ActTelaInicial.this, ActExperiencia.class);
         startActivity(intent);
     }
 }

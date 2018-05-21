@@ -33,6 +33,14 @@
         <activity
             android:name=".activity.ActFormacaoOperation"
             android:label="@string/title_activity_act_formacao_operation"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ActExperiencia"
+            android:label="@string/title_activity_act_experiencia"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ActExperienciaOperation"
+            android:label="@string/title_activity_act_experiencia_operation"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

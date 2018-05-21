@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tvFormacao"
+        android:id="@+id/tvEmpresa"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -14,34 +14,28 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:text="Computação"
+        android:text="TextView"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvInstituicao"
+        android:id="@+id/tvCargo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:text="Universidade Estadual do Ceará"
-        app:layout_constraintEnd_toEndOf="@+id/tvFormacao"
-        app:layout_constraintStart_toStartOf="@+id/tvFormacao"
-        app:layout_constraintTop_toBottomOf="@+id/tvFormacao" />
+        android:text="Founder e CTO"
+        app:layout_constraintEnd_toEndOf="@+id/tvEmpresa"
+        app:layout_constraintStart_toStartOf="@+id/tvEmpresa"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmpresa" />
 
     <View
-        android:id="@+id/dividerFormacao"
+        android:id="@+id/dividerExperiencia"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="@+id/tvInstituicao"
-        app:layout_constraintStart_toStartOf="@+id/tvInstituicao"
-        app:layout_constraintTop_toBottomOf="@+id/tvInstituicao" />
+        app:layout_constraintEnd_toEndOf="@+id/tvCargo"
+        app:layout_constraintStart_toStartOf="@+id/tvCargo"
+        app:layout_constraintTop_toBottomOf="@+id/tvCargo" />
 </android.support.constraint.ConstraintLayout>
