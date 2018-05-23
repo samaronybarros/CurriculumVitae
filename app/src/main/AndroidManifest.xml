@@ -43,6 +43,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.ActCurso"
+            android:label="@string/title_activity_act_curso"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ActCursoOperation"
+            android:label="@string/title_activity_act_curso_operation"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ActQualificacao"
+            android:label="@string/title_activity_act_qualificacao"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ActQualificacaoOperation"
+            android:label="@string/title_activity_act_qualificacao_operation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

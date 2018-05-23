@@ -45,5 +45,9 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_act_tela_inicial">ActTelaInicial</string>
+    <string name="title_activity_act_curso">ActCurso</string>
+    <string name="title_activity_act_curso_operation">ActCursoOperation</string>
+    <string name="title_activity_act_qualificacao">ActQualificacao</string>
+    <string name="title_activity_act_qualificacao_operation">ActQualificacaoOperation</string>
 
 </resources>

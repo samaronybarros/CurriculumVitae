@@ -1,6 +1,8 @@
 package com.example.sam.curriculumvitae.activity;
 
 import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,11 +15,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.sam.curriculumvitae.R;
+import com.example.sam.curriculumvitae.database.DadosOpenHelper;
+import com.example.sam.curriculumvitae.dominio.entidade.InfoPessoais;
+import com.example.sam.curriculumvitae.dominio.repositorio.InfoPessoaisRepositorio;
+import com.example.sam.curriculumvitae.mensagem.Mensagem;
 
 public class ActTelaInicial extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private TextView tvUsuario;
+    private TextView tvEmail;
+
+    private InfoPessoais infoPessoais;
+    private InfoPessoaisRepositorio infoPessoaisRepositorio;
+
+    private DadosOpenHelper dadosOpenHelper;
+    private SQLiteDatabase conexao;
+
+    private Mensagem mensagem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +43,10 @@ public class ActTelaInicial extends AppCompatActivity
         setContentView(R.layout.activity_act_tela_inicial);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        criarConexao();
+
+        mensagem = new Mensagem();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,11 +65,26 @@ public class ActTelaInicial extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        /*
+        //TODO: Implementar a função para pegar dados do banco e incluir no menu
+        // Não está pegando, pois os TextViews não estão sendo associados ao menu
+        tvUsuario   = (TextView) navigationView.findViewById(R.id.tvUsuario);
+        tvEmail     = (TextView) navigationView.findViewById(R.id.tvEmail);
+
+        infoPessoais = infoPessoaisRepositorio.buscar();
+
+        if (infoPessoais != null) {
+            tvUsuario.setText(infoPessoais.nome);
+            tvEmail.setText(infoPessoais.email);
+        }
+        */
     }
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -96,6 +133,12 @@ public class ActTelaInicial extends AppCompatActivity
             case (R.id.nav_experiencia):
                 goToScreenExperiencia();
                 break;
+            case (R.id.nav_curso):
+                goToScreenCurso();
+                break;
+            case (R.id.nav_qualificacao):
+                goToScreenQualificacao();
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -123,4 +166,23 @@ public class ActTelaInicial extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void goToScreenCurso() {
+        Intent intent = new Intent(ActTelaInicial.this, ActCurso.class);
+        startActivity(intent);
+    }
+
+    public void goToScreenQualificacao() {
+        Intent intent = new Intent(ActTelaInicial.this, ActQualificacao.class);
+        startActivity(intent);
+    }
+
+    private void criarConexao() {
+        try {
+            dadosOpenHelper = new DadosOpenHelper(this);
+            conexao = dadosOpenHelper.getWritableDatabase();
+            infoPessoaisRepositorio = new InfoPessoaisRepositorio(conexao);
+        } catch (SQLException ex) {
+            mensagem.alert(this, getString(R.string.message_erro), ex.getMessage());
+        }
+    }
 }

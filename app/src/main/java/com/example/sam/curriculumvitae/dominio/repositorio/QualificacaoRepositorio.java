@@ -81,6 +81,7 @@ public class QualificacaoRepositorio {
         Cursor resultado;
 
         sql.append(" SELECT             ");
+        sql.append(" CODIGO      ,   ");
         sql.append(" ATIVIDADE      ,   ");
         sql.append(" DESCRICAO          ");
         sql.append(" FROM               ");

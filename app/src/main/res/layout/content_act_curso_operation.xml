@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.ActCursoOperation"
+    tools:showIn="@layout/activity_act_curso_operation">
+
+    <EditText
+        android:id="@+id/etCurso"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Curso (ex: Programação Android)"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etInstituicao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Instituição"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etCurso"
+        app:layout_constraintStart_toStartOf="@+id/etCurso"
+        app:layout_constraintTop_toBottomOf="@+id/etCurso" />
+
+    <EditText
+        android:id="@+id/etDataInicio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Data de Início"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/spStatus"
+        app:layout_constraintStart_toStartOf="@+id/spStatus"
+        app:layout_constraintTop_toBottomOf="@+id/spStatus" />
+
+    <Spinner
+        android:id="@+id/spStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:entries="@array/list_status"
+        app:layout_constraintEnd_toEndOf="@+id/etInstituicao"
+        app:layout_constraintStart_toStartOf="@+id/etInstituicao"
+        app:layout_constraintTop_toBottomOf="@+id/etInstituicao" />
+
+    <EditText
+        android:id="@+id/etDataConclusao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Data Conclusão"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etDataInicio"
+        app:layout_constraintStart_toStartOf="@+id/etDataInicio"
+        app:layout_constraintTop_toBottomOf="@+id/etDataInicio" />
+
+    <EditText
+        android:id="@+id/etDescricao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Descrição"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/etDataConclusao"
+        app:layout_constraintStart_toStartOf="@+id/etDataConclusao"
+        app:layout_constraintTop_toBottomOf="@+id/etDataConclusao" />
+
+</android.support.constraint.ConstraintLayout>

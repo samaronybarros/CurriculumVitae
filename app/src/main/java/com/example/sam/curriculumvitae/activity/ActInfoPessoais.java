@@ -157,7 +157,7 @@ public class ActInfoPessoais extends AppCompatActivity {
     }
 
     private boolean isEmailValido(String email) {
-        boolean ret = (!isCampoVazio(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        boolean ret = (!isCampoVazio(email) && !(Patterns.EMAIL_ADDRESS.matcher(email).matches()));
 
         return ret;
     }
