@@ -40,7 +40,7 @@ public class ActExperiencia extends AppCompatActivity {
         Toolbar toolbarExperiencia = (Toolbar) findViewById(R.id.toolbarExperiencia);
         setSupportActionBar(toolbarExperiencia);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbarExperiencia.setTitle(R.string.title_experiencia);
+        getSupportActionBar().setTitle(R.string.title_experiencia);
         toolbarExperiencia.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

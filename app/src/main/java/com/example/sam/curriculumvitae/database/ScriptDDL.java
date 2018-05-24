@@ -144,8 +144,8 @@ public class ScriptDDL {
 
         sql.append(" CREATE TABLE IF NOT EXISTS IDIOMA( ");
         sql.append("    CODIGO       INTEGER         PRIMARY KEY AUTOINCREMENT NOT NULL,");
-        sql.append("    IDIOMA       VARCHAR(10)     NOT NULL DEFAULT(''), ");
-        sql.append("    NIVEL        VARCHAR(10)     NOT NULL DEFAULT('')  ");
+        sql.append("    IDIOMA       VARCHAR(30)     NOT NULL DEFAULT(''), ");
+        sql.append("    NIVEL        VARCHAR(30)     NOT NULL DEFAULT('')  ");
         sql.append(" ) ");
 
         return sql.toString();

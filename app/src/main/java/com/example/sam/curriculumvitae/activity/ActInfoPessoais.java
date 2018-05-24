@@ -49,11 +49,11 @@ public class ActInfoPessoais extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_act_info_pessoais);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Toolbar toolbarInfoPessoais = findViewById(id.toolbarInfoPessoais);
+        setSupportActionBar(toolbarInfoPessoais);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitle(R.string.title_info);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        getSupportActionBar().setTitle(R.string.title_info);
+        toolbarInfoPessoais.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToMainScreen();

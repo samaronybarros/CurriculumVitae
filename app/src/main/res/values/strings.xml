@@ -6,6 +6,7 @@
 
     <string name="title_activity_act_info_pessoais">Informações Pessoais</string>
 
+    <string name="title_tela_inicial">Curriculum Vitae</string>
     <string name="title_info_pessoais">Info</string>
     <string name="title_objetivo">Objetivo</string>
     <string name="title_formacao">Formação</string>
@@ -49,5 +50,7 @@
     <string name="title_activity_act_curso_operation">ActCursoOperation</string>
     <string name="title_activity_act_qualificacao">ActQualificacao</string>
     <string name="title_activity_act_qualificacao_operation">ActQualificacaoOperation</string>
+    <string name="title_activity_act_idioma">ActIdioma</string>
+    <string name="title_activity_actidioma_operation">ActidiomaOperation</string>
 
 </resources>

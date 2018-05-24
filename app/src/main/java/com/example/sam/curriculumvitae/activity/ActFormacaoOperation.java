@@ -42,7 +42,7 @@ public class ActFormacaoOperation extends AppCompatActivity {
         Toolbar toolbarFormacaoOperation = findViewById(R.id.toolbarFormacaoOperation);
         setSupportActionBar(toolbarFormacaoOperation);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbarFormacaoOperation.setTitle(R.string.title_formacao);
+        getSupportActionBar().setTitle(R.string.title_formacao);
         toolbarFormacaoOperation.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

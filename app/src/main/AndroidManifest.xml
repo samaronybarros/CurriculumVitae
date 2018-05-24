@@ -58,6 +58,14 @@
         <activity
             android:name=".activity.ActQualificacaoOperation"
             android:label="@string/title_activity_act_qualificacao_operation"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ActIdioma"
+            android:label="@string/title_activity_act_idioma"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ActIdiomaOperation"
+            android:label="@string/title_activity_actidioma_operation"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

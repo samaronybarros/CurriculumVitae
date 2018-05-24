@@ -40,7 +40,7 @@ public class ActQualificacao extends AppCompatActivity {
         Toolbar toolbarQualificacao = (Toolbar) findViewById(R.id.toolbarQualificacao);
         setSupportActionBar(toolbarQualificacao);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbarQualificacao.setTitle(R.string.title_qualificacao);
+        getSupportActionBar().setTitle(R.string.title_qualificacao);
         toolbarQualificacao.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

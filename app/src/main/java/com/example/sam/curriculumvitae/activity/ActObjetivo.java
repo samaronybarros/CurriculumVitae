@@ -44,7 +44,7 @@ public class ActObjetivo extends AppCompatActivity {
         Toolbar toolbarObjetivo = (Toolbar) findViewById(R.id.toolbarObjetivo);
         setSupportActionBar(toolbarObjetivo);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbarObjetivo.setTitle(R.string.title_objetivo);
+        getSupportActionBar().setTitle(R.string.title_objetivo);
         toolbarObjetivo.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

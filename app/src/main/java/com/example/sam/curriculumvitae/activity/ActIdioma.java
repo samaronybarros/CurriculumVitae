@@ -10,37 +10,38 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.sam.curriculumvitae.R;
-import com.example.sam.curriculumvitae.adapter.CursoAdapter;
+import com.example.sam.curriculumvitae.adapter.IdiomaAdapter;
 import com.example.sam.curriculumvitae.database.DadosOpenHelper;
-import com.example.sam.curriculumvitae.dominio.entidade.Curso;
-import com.example.sam.curriculumvitae.dominio.repositorio.CursoRepositorio;
+import com.example.sam.curriculumvitae.dominio.entidade.Idioma;
+import com.example.sam.curriculumvitae.dominio.repositorio.IdiomaRepositorio;
 import com.example.sam.curriculumvitae.mensagem.Mensagem;
 
 import java.util.List;
 
-public class ActCurso extends AppCompatActivity {
-    private Curso curso;
-    private CursoRepositorio cursoRepositorio;
-    private CursoAdapter cursoAdapter;
+public class ActIdioma extends AppCompatActivity {
+    private Idioma idioma;
+    private IdiomaRepositorio idiomaRepositorio;
+    private IdiomaAdapter idiomaAdapter;
 
     private DadosOpenHelper dadosOpenHelper;
     private SQLiteDatabase conexao;
 
     private Mensagem mensagem;
 
-    private RecyclerView lstDadosCurso;
+    private RecyclerView lstDadosIdioma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_curso);
-        Toolbar toolbarCurso = (Toolbar) findViewById(R.id.toolbarCurso);
-        setSupportActionBar(toolbarCurso);
+        setContentView(R.layout.activity_act_idioma);
+        Toolbar toolbarIdioma = (Toolbar) findViewById(R.id.toolbarIdioma);
+        setSupportActionBar(toolbarIdioma);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.title_curso);
-        toolbarCurso.setNavigationOnClickListener(new View.OnClickListener() {
+        getSupportActionBar().setTitle(R.string.title_idioma);
+        toolbarIdioma.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToMainScreen();
@@ -48,36 +49,36 @@ public class ActCurso extends AppCompatActivity {
         });
 
         mensagem = new Mensagem();
-        lstDadosCurso = (RecyclerView) findViewById(R.id.lstDadosCurso);
+        lstDadosIdioma = (RecyclerView) findViewById(R.id.lstDadosIdioma);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToCursoOperationScreen();
+                goToIdiomaOperationScreen();
             }
         });
 
         criarConexao();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        lstDadosCurso.setLayoutManager(linearLayoutManager);
-        cursoRepositorio = new CursoRepositorio(conexao);
+        lstDadosIdioma.setLayoutManager(linearLayoutManager);
+        idiomaRepositorio = new IdiomaRepositorio(conexao);
 
-        List<Curso> dadosCurso = cursoRepositorio.buscarTodosCursos();
+        List<Idioma> dadosIdioma = idiomaRepositorio.buscarTodosIdiomas();
 
-        cursoAdapter = new CursoAdapter(dadosCurso);
+        idiomaAdapter = new IdiomaAdapter(dadosIdioma);
 
-        lstDadosCurso.setAdapter(cursoAdapter);
+        lstDadosIdioma.setAdapter(idiomaAdapter);
     }
 
     public void goToMainScreen() {
-        Intent intent = new Intent(ActCurso.this, ActTelaInicial.class);
+        Intent intent = new Intent(ActIdioma.this, ActTelaInicial.class);
         startActivity(intent);
     }
 
-    public void goToCursoOperationScreen() {
-        Intent intent = new Intent(ActCurso.this, ActCursoOperation.class);
+    public void goToIdiomaOperationScreen() {
+        Intent intent = new Intent(ActIdioma.this, ActIdiomaOperation.class);
         startActivity(intent);
     }
 
@@ -85,7 +86,7 @@ public class ActCurso extends AppCompatActivity {
         try {
             dadosOpenHelper = new DadosOpenHelper(this);
             conexao = dadosOpenHelper.getWritableDatabase();
-            cursoRepositorio = new CursoRepositorio(conexao);
+            idiomaRepositorio = new IdiomaRepositorio(conexao);
         } catch (SQLException ex) {
             mensagem.alert(this, getString(R.string.message_erro), ex.getMessage());
         }

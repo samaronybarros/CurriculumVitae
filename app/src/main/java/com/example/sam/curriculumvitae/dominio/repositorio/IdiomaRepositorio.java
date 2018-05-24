@@ -76,7 +76,7 @@ public class IdiomaRepositorio {
         return null;
     }
 
-    public List<Idioma> buscarTodasIdiomas() {
+    public List<Idioma> buscarTodosIdiomas() {
         List<Idioma> idioma = new ArrayList<Idioma>();
         StringBuilder sql = new StringBuilder();
         Cursor resultado;

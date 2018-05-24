@@ -16,18 +16,18 @@ import android.widget.Spinner;
 
 import com.example.sam.curriculumvitae.R;
 import com.example.sam.curriculumvitae.database.DadosOpenHelper;
-import com.example.sam.curriculumvitae.dominio.entidade.Qualificacao;
-import com.example.sam.curriculumvitae.dominio.repositorio.QualificacaoRepositorio;
+import com.example.sam.curriculumvitae.dominio.entidade.Idioma;
+import com.example.sam.curriculumvitae.dominio.repositorio.IdiomaRepositorio;
 import com.example.sam.curriculumvitae.mensagem.Mensagem;
 
-public class ActQualificacaoOperation extends AppCompatActivity {
-    private EditText etAtividade;
-    private EditText etDescricao;
+public class ActIdiomaOperation extends AppCompatActivity {
+    private EditText etIdioma;
+    private Spinner  spNivel;
 
     private Mensagem mensagem;
 
-    private Qualificacao qualificacao;
-    private QualificacaoRepositorio qualificacaoRepositorio;
+    private Idioma idioma;
+    private IdiomaRepositorio idiomaRepositorio;
 
     private DadosOpenHelper dadosOpenHelper;
     private SQLiteDatabase conexao;
@@ -35,22 +35,22 @@ public class ActQualificacaoOperation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_qualificacao_operation);
-        Toolbar toolbarQualificacaoOperation = findViewById(R.id.toolbarQualificacaoOperation);
-        setSupportActionBar(toolbarQualificacaoOperation);
+        setContentView(R.layout.activity_act_idioma_operation);
+        Toolbar toolbarIdiomaOperation = findViewById(R.id.toolbarIdiomaOperation);
+        setSupportActionBar(toolbarIdiomaOperation);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.title_qualificacao);
-        toolbarQualificacaoOperation.setNavigationOnClickListener(new View.OnClickListener() {
+        getSupportActionBar().setTitle(R.string.title_idioma);
+        toolbarIdiomaOperation.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToQualificacaoScreen();
+                goToIdiomaScreen();
             }
         });
 
         mensagem = new Mensagem();
 
-        etAtividade   = (EditText) findViewById(R.id.etAtividade);
-        etDescricao   = (EditText) findViewById(R.id.etDescricao);
+        etIdioma  = (EditText) findViewById(R.id.etIdioma);
+        spNivel   = (Spinner) findViewById(R.id.spNivel);
 
         criarConexao();
         verificaParametro();
@@ -59,7 +59,7 @@ public class ActQualificacaoOperation extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater  = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_act_qualificacao, menu);
+        menuInflater.inflate(R.menu.menu_act_idioma, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -81,16 +81,16 @@ public class ActQualificacaoOperation extends AppCompatActivity {
     private boolean validaCampos() {
         boolean ret;
 
-        String atividade  = etAtividade.getText().toString();
-        String descricao  = etDescricao.getText().toString();
+        String strIdioma  = etIdioma.getText().toString();
+        String nivel      = spNivel.getItemAtPosition(spNivel.getFirstVisiblePosition()).toString();//spNivel.toString();
 
-        qualificacao.atividade    = atividade;
-        qualificacao.descricao    = descricao;
+        idioma.idioma     = strIdioma;
+        idioma.nivel      = nivel;
 
-        if (ret = isCampoVazio(atividade)) {
-            etAtividade.requestFocus();
-        } else if (ret = isCampoVazio(descricao)) {
-            etDescricao.requestFocus();
+        if (ret = isCampoVazio(strIdioma)) {
+            etIdioma.requestFocus();
+        } else if (ret = isCampoVazio(nivel)) {
+            spNivel.requestFocus();
         }
 
         if (ret) {
@@ -109,15 +109,15 @@ public class ActQualificacaoOperation extends AppCompatActivity {
     private void confirmar() {
         if (!validaCampos()) {
             try {
-                if (qualificacao.codigo == 0) {
-                    qualificacaoRepositorio.inserir(qualificacao);
+                if (idioma.codigo == 0) {
+                    idiomaRepositorio.inserir(idioma);
                 } else {
-                    qualificacaoRepositorio.alterar(qualificacao);
+                    idiomaRepositorio.alterar(idioma);
                 }
 
                 mensagem.mostraTexto(this, getString(R.string.message_dados_atualizados_sucesso));
 
-                goToQualificacaoScreen();
+                goToIdiomaScreen();
             } catch (Exception ex) {
                 mensagem.alert(this, getString(R.string.message_erro), ex.getMessage());
             }
@@ -126,7 +126,7 @@ public class ActQualificacaoOperation extends AppCompatActivity {
 
     private void excluir() {
         try {
-            mensagem.msgYesNo(this, getString(R.string.message_excluir), getString(R.string.message_excluir_qualificacao), execExcluir());
+            mensagem.msgYesNo(this, getString(R.string.message_excluir), getString(R.string.message_excluir_idioma), execExcluir());
         } catch (Exception ex) {
             mensagem.alert(this, getString(R.string.message_erro), ex.getMessage());
         }
@@ -136,8 +136,8 @@ public class ActQualificacaoOperation extends AppCompatActivity {
         return new Runnable() {
             @Override
             public void run() {
-                qualificacaoRepositorio.excluir(qualificacao.codigo);
-                goToQualificacaoScreen();
+                idiomaRepositorio.excluir(idioma.codigo);
+                goToIdiomaScreen();
             }
         };
     }
@@ -146,31 +146,48 @@ public class ActQualificacaoOperation extends AppCompatActivity {
         try {
             dadosOpenHelper = new DadosOpenHelper(this);
             conexao = dadosOpenHelper.getWritableDatabase();
-            qualificacaoRepositorio = new QualificacaoRepositorio(conexao);
+            idiomaRepositorio = new IdiomaRepositorio(conexao);
         } catch (SQLException ex) {
             mensagem.alert(this, getString(R.string.message_erro), ex.getMessage());
         }
     }
 
-    public void goToQualificacaoScreen() {
-        Intent intent = new Intent(ActQualificacaoOperation.this, ActQualificacao.class);
+    public void goToIdiomaScreen() {
+        Intent intent = new Intent(ActIdiomaOperation.this, ActIdioma.class);
         startActivity(intent);
     }
 
-    private void insereDados(Qualificacao q) {
-        etAtividade.setText(q.atividade);
-        etDescricao.setText(q.descricao);
+    private int getPosNivel(String spinnerNivel) {
+        int ret = 0;
+
+        switch (spinnerNivel) {
+            case ("Básico"):
+                ret = 1; break;
+            case ("Intermediário"):
+                ret = 2; break;
+            case ("Avançado"):
+                ret = 3; break;
+            case ("Fluente"):
+                ret = 4; break;
+        }
+
+        return ret;
+    }
+
+    private void insereDados(Idioma i) {
+        etIdioma.setText(i.idioma);
+        spNivel.setSelection(getPosNivel(i.nivel));
     }
 
     private void verificaParametro() {
         Bundle bundle = getIntent().getExtras();
 
-        qualificacao = new Qualificacao();
+        idioma = new Idioma();
 
-        if (bundle != null && bundle.containsKey("QUALIFICACAO")) {
-            qualificacao = (Qualificacao) bundle.getSerializable("QUALIFICACAO");
+        if (bundle != null && bundle.containsKey("IDIOMA")) {
+            idioma = (Idioma) bundle.getSerializable("IDIOMA");
 
-            insereDados(qualificacao);
+            insereDados(idioma);
         }
     }
 }

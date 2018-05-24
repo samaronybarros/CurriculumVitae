@@ -15,7 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sam.curriculumvitae.R;
 import com.example.sam.curriculumvitae.database.DadosOpenHelper;
@@ -37,12 +39,15 @@ public class ActTelaInicial extends AppCompatActivity
 
     private Mensagem mensagem;
 
+    private ImageButton imgAvatar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_tela_inicial);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Toolbar toolbarTelaInicial = (Toolbar) findViewById(R.id.toolbarTelaInicial);
+        setSupportActionBar(toolbarTelaInicial);
+        getSupportActionBar().setTitle(R.string.title_tela_inicial);
 
         criarConexao();
 
@@ -59,7 +64,7 @@ public class ActTelaInicial extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbarTelaInicial, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -114,6 +119,17 @@ public class ActTelaInicial extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    public void addListenerOnButton() {
+        imgAvatar = (ImageButton) findViewById(R.id.imgAvatar);
+
+        imgAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mensagem.alert(getApplicationContext(), "Botao", "Botão clicado");
+            }
+        });
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -138,6 +154,9 @@ public class ActTelaInicial extends AppCompatActivity
                 break;
             case (R.id.nav_qualificacao):
                 goToScreenQualificacao();
+                break;
+            case (R.id.nav_idioma):
+                goToScreenIdioma();
                 break;
         }
 
@@ -173,6 +192,11 @@ public class ActTelaInicial extends AppCompatActivity
 
     public void goToScreenQualificacao() {
         Intent intent = new Intent(ActTelaInicial.this, ActQualificacao.class);
+        startActivity(intent);
+    }
+
+    public void goToScreenIdioma() {
+        Intent intent = new Intent(ActTelaInicial.this, ActIdioma.class);
         startActivity(intent);
     }
 

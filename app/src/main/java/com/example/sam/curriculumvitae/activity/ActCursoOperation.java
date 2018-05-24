@@ -43,7 +43,7 @@ public class ActCursoOperation extends AppCompatActivity {
         Toolbar toolbarCursoOperation = findViewById(R.id.toolbarCursoOperation);
         setSupportActionBar(toolbarCursoOperation);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbarCursoOperation.setTitle(R.string.title_curso);
+        getSupportActionBar().setTitle(R.string.title_curso);
         toolbarCursoOperation.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
