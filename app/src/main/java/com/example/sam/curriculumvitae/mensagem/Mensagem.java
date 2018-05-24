@@ -13,7 +13,6 @@ import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
 public class Mensagem {
-    public boolean buttonClicked;
 
     public void alert(Context context, String titulo, String mensagem) {
         AlertDialog.Builder dlg = new AlertDialog.Builder(context);

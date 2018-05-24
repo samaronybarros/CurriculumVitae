@@ -69,4 +69,9 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="23"
+        />
+
 </manifest>

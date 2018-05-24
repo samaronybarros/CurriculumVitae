@@ -1,5 +1,7 @@
 package com.example.sam.curriculumvitae.dominio.entidade;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 
 public class Formacao implements Serializable {
@@ -12,5 +14,15 @@ public class Formacao implements Serializable {
 
     public Formacao() {
         this.codigo = 0;
+    }
+
+    private boolean isCampoVazio(String campo) {
+        boolean ret = (TextUtils.isEmpty(campo) || campo.trim().isEmpty());
+
+        return ret;
+    }
+
+    public boolean isDataConclusaoVazia() {
+        return isCampoVazio(dataConclusao);
     }
 }

@@ -53,4 +53,18 @@
     <string name="title_activity_act_idioma">ActIdioma</string>
     <string name="title_activity_actidioma_operation">ActidiomaOperation</string>
 
+    <string name="cv_endereco">Endereço:</string>
+    <string name="cv_nascimento">Nascimento:</string>
+    <string name="cv_nacionalidade">Nacionalidade:</string>
+    <string name="cv_telefone">Telefone:</string>
+    <string name="cv_celular">Celular:</string>
+    <string name="cv_email">E-mail:</string>
+
+    <string name="cv_objetivo">Objetivo</string>
+    <string name="cv_formacao">Formação</string>
+    <string name="cv_experiencia">Experiência</string>
+    <string name="cv_curso">Cursos Extracurriculares</string>
+    <string name="cv_qualificacao">Qualificações e Atividades Profissionais</string>
+    <string name="cv_idioma">Idiomas</string>
+
 </resources>

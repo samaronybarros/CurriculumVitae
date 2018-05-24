@@ -1,8 +1,10 @@
 package com.example.sam.curriculumvitae.activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,15 +17,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sam.curriculumvitae.R;
+import com.example.sam.curriculumvitae.curriculo.CriarPDF;
 import com.example.sam.curriculumvitae.database.DadosOpenHelper;
 import com.example.sam.curriculumvitae.dominio.entidade.InfoPessoais;
 import com.example.sam.curriculumvitae.dominio.repositorio.InfoPessoaisRepositorio;
 import com.example.sam.curriculumvitae.mensagem.Mensagem;
+
+import java.io.File;
 
 public class ActTelaInicial extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +46,8 @@ public class ActTelaInicial extends AppCompatActivity
     private Mensagem mensagem;
 
     private ImageButton imgAvatar;
+
+    private Button gerarCurriculo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +92,37 @@ public class ActTelaInicial extends AppCompatActivity
             tvEmail.setText(infoPessoais.email);
         }
         */
+
+        gerarCurriculo = (Button) findViewById(R.id.btGerarCurriculo);
+
+        gerarCurriculo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CriarPDF criarPDF;
+                criarPDF = new CriarPDF(getApplicationContext());
+
+                String pdfContent = criarPDF.generatePDF();
+
+                criarPDF.outputToFile("curriculo.pdf",pdfContent,"ISO-8859-1");
+
+                File file = new File(criarPDF.getNomeArquivo());
+
+                if (file.exists()) {
+                    Uri path = Uri.fromFile(file);
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(path, "application/pdf");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    try {
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(ActTelaInicial.this,
+                                "No Application Available to View PDF",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -119,6 +158,7 @@ public class ActTelaInicial extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    //TODO: Criar função
     public void addListenerOnButton() {
         imgAvatar = (ImageButton) findViewById(R.id.imgAvatar);
 

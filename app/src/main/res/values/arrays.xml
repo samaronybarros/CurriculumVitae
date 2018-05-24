@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="list_estado_civil">
+        <item>Estado Civil</item>
+        <item>Solteiro(a)</item>
+        <item>Casado(a)</item>
+        <item>Divorciado(a)</item>
+        <item>Viúvo(a)</item>
+        <item>Separado(a)</item>
+    </string-array>
+
+    <string-array name="list_cnh">
+        <item>Tipo CNH</item>
+        <item>A</item>
+        <item>B</item>
+        <item>AB</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+    </string-array>
+
+    <string-array name="list_status">
+        <item>Status</item>
+        <item>Em conclusão</item>
+        <item>Concluído</item>
+        <item>Incompleto</item>
+    </string-array>
+
+    <string-array name="list_nivel">
+        <item>Nível</item>
+        <item>Básico</item>
+        <item>Intermediário</item>
+        <item>Avançado</item>
+        <item>Fluente</item>
+    </string-array>
+
+</resources>

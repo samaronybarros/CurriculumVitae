@@ -22,7 +22,6 @@ import com.example.sam.curriculumvitae.mensagem.Mensagem;
 import java.util.List;
 
 public class ActFormacao extends AppCompatActivity {
-    private Formacao formacao;
     private FormacaoRepositorio formacaoRepositorio;
     private FormacaoAdapter formacaoAdapter;
 
