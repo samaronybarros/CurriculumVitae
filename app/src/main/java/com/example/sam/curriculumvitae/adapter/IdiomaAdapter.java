@@ -30,9 +30,7 @@ public class IdiomaAdapter extends RecyclerView.Adapter<IdiomaAdapter.ViewHolder
 
         View view = layoutInflater.inflate(R.layout.layout_lista_idioma, parent, false);
 
-        ViewHolderIdioma viewHolderIdioma = new ViewHolderIdioma(view, parent.getContext());
-
-        return viewHolderIdioma;
+        return new ViewHolderIdioma(view, parent.getContext());
     }
 
     @Override
@@ -54,11 +52,11 @@ public class IdiomaAdapter extends RecyclerView.Adapter<IdiomaAdapter.ViewHolder
         public TextView tvIdioma;
         public TextView tvNivel;
 
-        public ViewHolderIdioma(View itemView, final Context context) {
+        private ViewHolderIdioma(View itemView, final Context context) {
             super(itemView);
 
-            tvIdioma = (TextView) itemView.findViewById(R.id.tvIdioma);
-            tvNivel = (TextView) itemView.findViewById(R.id.tvNivel);
+            tvIdioma =  itemView.findViewById(R.id.tvIdioma);
+            tvNivel =  itemView.findViewById(R.id.tvNivel);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

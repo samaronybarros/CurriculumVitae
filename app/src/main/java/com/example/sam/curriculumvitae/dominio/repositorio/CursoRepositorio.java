@@ -55,10 +55,11 @@ public class CursoRepositorio {
 
     public Curso buscar(int codigo) {
         Curso curso = new Curso();
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
         String[] parametros = new String[1];
         Cursor resultado;
 
+        sql = new StringBuilder();
         parametros[0] = String.valueOf(codigo);
 
         sql.append(" SELECT             ");
@@ -88,13 +89,17 @@ public class CursoRepositorio {
             return curso;
         }
 
+        resultado.close();
+
         return null;
     }
 
     public List<Curso> buscarTodosCursos() {
-        List<Curso> curso = new ArrayList<Curso>();
-        StringBuilder sql = new StringBuilder();
+        List<Curso> curso = new ArrayList<>();
+        StringBuilder sql;
         Cursor resultado;
+
+        sql = new StringBuilder();
 
         sql.append(" SELECT             ");
         sql.append(" CODIGO         ,   ");
@@ -126,6 +131,8 @@ public class CursoRepositorio {
                 curso.add(c);
             } while (resultado.moveToNext());
         }
+
+        resultado.close();
 
         return curso;
     }

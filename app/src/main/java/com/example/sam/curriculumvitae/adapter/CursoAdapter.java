@@ -30,9 +30,7 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.ViewHolderCu
 
         View view = layoutInflater.inflate(R.layout.layout_lista_curso, parent, false);
 
-        ViewHolderCurso viewHolderCurso = new ViewHolderCurso(view, parent.getContext());
-
-        return viewHolderCurso;
+        return new ViewHolderCurso(view, parent.getContext());
     }
 
     @Override
@@ -54,11 +52,11 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.ViewHolderCu
         public TextView tvCurso;
         public TextView tvInstituicao;
 
-        public ViewHolderCurso(View itemView, final Context context) {
+        private ViewHolderCurso(View itemView, final Context context) {
             super(itemView);
 
-            tvCurso = (TextView) itemView.findViewById(R.id.tvCurso);
-            tvInstituicao = (TextView) itemView.findViewById(R.id.tvInstituicao);
+            tvCurso = itemView.findViewById(R.id.tvCurso);
+            tvInstituicao = itemView.findViewById(R.id.tvInstituicao);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

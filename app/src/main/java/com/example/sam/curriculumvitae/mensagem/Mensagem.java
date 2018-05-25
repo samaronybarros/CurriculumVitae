@@ -1,16 +1,11 @@
 package com.example.sam.curriculumvitae.mensagem;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.sam.curriculumvitae.R;
-
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 public class Mensagem {
 

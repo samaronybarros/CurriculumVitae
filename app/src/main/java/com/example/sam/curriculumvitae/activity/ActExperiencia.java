@@ -3,14 +3,15 @@ package com.example.sam.curriculumvitae.activity;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.example.sam.curriculumvitae.R;
 import com.example.sam.curriculumvitae.adapter.ExperienciaAdapter;
@@ -20,26 +21,23 @@ import com.example.sam.curriculumvitae.dominio.repositorio.ExperienciaRepositori
 import com.example.sam.curriculumvitae.mensagem.Mensagem;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ActExperiencia extends AppCompatActivity {
-    private Experiencia experiencia;
     private ExperienciaRepositorio experienciaRepositorio;
-    private ExperienciaAdapter experienciaAdapter;
 
-    private DadosOpenHelper dadosOpenHelper;
     private SQLiteDatabase conexao;
 
     private Mensagem mensagem;
 
-    private RecyclerView lstDadosExperiencia;
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_experiencia);
-        Toolbar toolbarExperiencia = (Toolbar) findViewById(R.id.toolbarExperiencia);
+        Toolbar toolbarExperiencia = findViewById(R.id.toolbarExperiencia);
         setSupportActionBar(toolbarExperiencia);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.title_experiencia);
         toolbarExperiencia.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,9 +47,9 @@ public class ActExperiencia extends AppCompatActivity {
         });
 
         mensagem = new Mensagem();
-        lstDadosExperiencia = (RecyclerView) findViewById(R.id.lstDadosExperiencia);
+        RecyclerView lstDadosExperiencia = findViewById(R.id.lstDadosExperiencia);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,7 +65,7 @@ public class ActExperiencia extends AppCompatActivity {
 
         List<Experiencia> dadosExperiencia = experienciaRepositorio.buscarTodasExperiencias();
 
-        experienciaAdapter = new ExperienciaAdapter(dadosExperiencia);
+        ExperienciaAdapter experienciaAdapter = new ExperienciaAdapter(dadosExperiencia);
 
         lstDadosExperiencia.setAdapter(experienciaAdapter);
     }
@@ -84,7 +82,7 @@ public class ActExperiencia extends AppCompatActivity {
 
     private void criarConexao() {
         try {
-            dadosOpenHelper = new DadosOpenHelper(this);
+            DadosOpenHelper dadosOpenHelper = new DadosOpenHelper(this);
             conexao = dadosOpenHelper.getWritableDatabase();
             experienciaRepositorio = new ExperienciaRepositorio(conexao);
         } catch (SQLException ex) {

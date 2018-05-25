@@ -2,13 +2,11 @@ package com.example.sam.curriculumvitae.activity;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,70 +15,41 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sam.curriculumvitae.R;
 import com.example.sam.curriculumvitae.curriculo.CriarPDF;
-import com.example.sam.curriculumvitae.database.DadosOpenHelper;
-import com.example.sam.curriculumvitae.dominio.entidade.InfoPessoais;
-import com.example.sam.curriculumvitae.dominio.repositorio.InfoPessoaisRepositorio;
-import com.example.sam.curriculumvitae.mensagem.Mensagem;
 
 import java.io.File;
+import java.util.Objects;
 
 public class ActTelaInicial extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TextView tvUsuario;
-    private TextView tvEmail;
-
-    private InfoPessoais infoPessoais;
-    private InfoPessoaisRepositorio infoPessoaisRepositorio;
-
-    private DadosOpenHelper dadosOpenHelper;
-    private SQLiteDatabase conexao;
-
-    private Mensagem mensagem;
-
-    private ImageButton imgAvatar;
-
-    private Button gerarCurriculo;
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_tela_inicial);
-        Toolbar toolbarTelaInicial = (Toolbar) findViewById(R.id.toolbarTelaInicial);
+        Toolbar toolbarTelaInicial = findViewById(R.id.toolbarTelaInicial);
         setSupportActionBar(toolbarTelaInicial);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.title_tela_inicial);
 
-        criarConexao();
-
-        mensagem = new Mensagem();
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbarTelaInicial, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         /*
         //TODO: Implementar a função para pegar dados do banco e incluir no menu
+        //TODO: Implementar a função de conexão com o Banco de Dados
         // Não está pegando, pois os TextViews não estão sendo associados ao menu
         tvUsuario   = (TextView) navigationView.findViewById(R.id.tvUsuario);
         tvEmail     = (TextView) navigationView.findViewById(R.id.tvEmail);
@@ -93,7 +62,7 @@ public class ActTelaInicial extends AppCompatActivity
         }
         */
 
-        gerarCurriculo = (Button) findViewById(R.id.btGerarCurriculo);
+        Button gerarCurriculo = findViewById(R.id.btGerarCurriculo);
 
         gerarCurriculo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +96,7 @@ public class ActTelaInicial extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -159,8 +128,9 @@ public class ActTelaInicial extends AppCompatActivity
     }
 
     //TODO: Criar função
+    /*
     public void addListenerOnButton() {
-        imgAvatar = (ImageButton) findViewById(R.id.imgAvatar);
+        ImageButton imgAvatar = findViewById(R.id.imgAvatar);
 
         imgAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,10 +139,11 @@ public class ActTelaInicial extends AppCompatActivity
             }
         });
     }
+    */
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -200,7 +171,7 @@ public class ActTelaInicial extends AppCompatActivity
                 break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -238,15 +209,5 @@ public class ActTelaInicial extends AppCompatActivity
     public void goToScreenIdioma() {
         Intent intent = new Intent(ActTelaInicial.this, ActIdioma.class);
         startActivity(intent);
-    }
-
-    private void criarConexao() {
-        try {
-            dadosOpenHelper = new DadosOpenHelper(this);
-            conexao = dadosOpenHelper.getWritableDatabase();
-            infoPessoaisRepositorio = new InfoPessoaisRepositorio(conexao);
-        } catch (SQLException ex) {
-            mensagem.alert(this, getString(R.string.message_erro), ex.getMessage());
-        }
     }
 }

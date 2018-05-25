@@ -73,13 +73,17 @@ public class IdiomaRepositorio {
             return idioma;
         }
 
+        resultado.close();
+
         return null;
     }
 
     public List<Idioma> buscarTodosIdiomas() {
-        List<Idioma> idioma = new ArrayList<Idioma>();
-        StringBuilder sql = new StringBuilder();
+        List<Idioma> idioma = new ArrayList<>();
+        StringBuilder sql;
         Cursor resultado;
+
+        sql = new StringBuilder();
 
         sql.append(" SELECT             ");
         sql.append(" CODIGO         ,   ");
@@ -103,6 +107,8 @@ public class IdiomaRepositorio {
                 idioma.add(i);
             } while (resultado.moveToNext());
         }
+
+        resultado.close();
 
         return idioma;
     }

@@ -89,13 +89,17 @@ public class ExperienciaRepositorio {
             return experiencia;
         }
 
+        resultado.close();
+
         return null;
     }
 
     public List<Experiencia> buscarTodasExperiencias() {
-        List<Experiencia> experiencia = new ArrayList<Experiencia>();
-        StringBuilder sql = new StringBuilder();
+        List<Experiencia> experiencia = new ArrayList<>();
+        StringBuilder sql;
         Cursor resultado;
+
+        sql = new StringBuilder();
 
         sql.append(" SELECT             ");
         sql.append(" CODIGO         ,   ");
@@ -127,6 +131,8 @@ public class ExperienciaRepositorio {
                 experiencia.add(e);
             } while (resultado.moveToNext());
         }
+
+        resultado.close();
 
         return experiencia;
     }

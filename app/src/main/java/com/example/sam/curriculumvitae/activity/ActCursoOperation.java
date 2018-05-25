@@ -3,7 +3,9 @@ package com.example.sam.curriculumvitae.activity;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -20,6 +22,8 @@ import com.example.sam.curriculumvitae.dominio.entidade.Curso;
 import com.example.sam.curriculumvitae.dominio.repositorio.CursoRepositorio;
 import com.example.sam.curriculumvitae.mensagem.Mensagem;
 
+import java.util.Objects;
+
 public class ActCursoOperation extends AppCompatActivity {
     private EditText etCurso;
     private EditText etInstituicao;
@@ -33,16 +37,14 @@ public class ActCursoOperation extends AppCompatActivity {
     private Curso curso;
     private CursoRepositorio cursoRepositorio;
 
-    private DadosOpenHelper dadosOpenHelper;
-    private SQLiteDatabase conexao;
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_curso_operation);
         Toolbar toolbarCursoOperation = findViewById(R.id.toolbarCursoOperation);
         setSupportActionBar(toolbarCursoOperation);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.title_curso);
         toolbarCursoOperation.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,12 +55,12 @@ public class ActCursoOperation extends AppCompatActivity {
 
         mensagem = new Mensagem();
 
-        etCurso         = (EditText) findViewById(R.id.etCurso);
-        etInstituicao   = (EditText) findViewById(R.id.etInstituicao);
-        spStatus        = (Spinner) findViewById(R.id.spStatus);
-        etDataInicio    = (EditText) findViewById(R.id.etDataInicio);
-        etDataConclusao = (EditText) findViewById(R.id.etDataConclusao);
-        etDescricao     = (EditText) findViewById(R.id.etDescricao);
+        etCurso         = findViewById(R.id.etCurso);
+        etInstituicao   = findViewById(R.id.etInstituicao);
+        spStatus        = findViewById(R.id.spStatus);
+        etDataInicio    = findViewById(R.id.etDataInicio);
+        etDataConclusao = findViewById(R.id.etDataConclusao);
+        etDescricao     = findViewById(R.id.etDescricao);
 
         criarConexao();
         verificaParametro();
@@ -119,9 +121,7 @@ public class ActCursoOperation extends AppCompatActivity {
     }
 
     private boolean isCampoVazio(String campo) {
-        boolean ret = (TextUtils.isEmpty(campo) || campo.trim().isEmpty());
-
-        return ret;
+        return (TextUtils.isEmpty(campo) || campo.trim().isEmpty());
     }
 
     private void confirmar() {
@@ -162,8 +162,8 @@ public class ActCursoOperation extends AppCompatActivity {
 
     private void criarConexao() {
         try {
-            dadosOpenHelper = new DadosOpenHelper(this);
-            conexao = dadosOpenHelper.getWritableDatabase();
+            DadosOpenHelper dadosOpenHelper = new DadosOpenHelper(this);
+            SQLiteDatabase conexao = dadosOpenHelper.getWritableDatabase();
             cursoRepositorio = new CursoRepositorio(conexao);
         } catch (SQLException ex) {
             mensagem.alert(this, getString(R.string.message_erro), ex.getMessage());
@@ -206,7 +206,9 @@ public class ActCursoOperation extends AppCompatActivity {
         if (bundle != null && bundle.containsKey("CURSO")) {
             curso = (Curso) bundle.getSerializable("CURSO");
 
-            insereDados(curso);
+            if (curso != null) {
+                insereDados(curso);
+            }
         }
     }
 }

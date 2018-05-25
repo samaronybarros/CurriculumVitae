@@ -60,8 +60,10 @@ public class InfoPessoaisRepositorio {
 
     public InfoPessoais buscar() {
         InfoPessoais infoPessoais = new InfoPessoais();
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
         Cursor resultado;
+
+        sql = new StringBuilder();
 
         sql.append(" SELECT ");
         sql.append(" CODIGO               , ");
@@ -97,6 +99,8 @@ public class InfoPessoaisRepositorio {
 
             return infoPessoais;
         }
+
+        resultado.close();
 
         return null;
     }

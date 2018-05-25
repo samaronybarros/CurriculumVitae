@@ -30,9 +30,7 @@ public class ExperienciaAdapter extends RecyclerView.Adapter<ExperienciaAdapter.
 
         View view = layoutInflater.inflate(R.layout.layout_lista_experiencia, parent, false);
 
-        ViewHolderExperiencia viewHolderExperiencia = new ViewHolderExperiencia(view, parent.getContext());
-
-        return viewHolderExperiencia;
+        return new ViewHolderExperiencia(view, parent.getContext());
     }
 
     @Override
@@ -54,11 +52,11 @@ public class ExperienciaAdapter extends RecyclerView.Adapter<ExperienciaAdapter.
         public TextView tvEmpresa;
         public TextView tvCargo;
 
-        public ViewHolderExperiencia(View itemView, final Context context) {
+        private ViewHolderExperiencia(View itemView, final Context context) {
             super(itemView);
 
-            tvEmpresa = (TextView) itemView.findViewById(R.id.tvEmpresa);
-            tvCargo = (TextView) itemView.findViewById(R.id.tvCargo);
+            tvEmpresa = itemView.findViewById(R.id.tvEmpresa);
+            tvCargo = itemView.findViewById(R.id.tvCargo);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

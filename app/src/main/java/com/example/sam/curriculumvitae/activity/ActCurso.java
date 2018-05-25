@@ -3,7 +3,9 @@ package com.example.sam.curriculumvitae.activity;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,26 +21,23 @@ import com.example.sam.curriculumvitae.dominio.repositorio.CursoRepositorio;
 import com.example.sam.curriculumvitae.mensagem.Mensagem;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ActCurso extends AppCompatActivity {
-    private Curso curso;
     private CursoRepositorio cursoRepositorio;
-    private CursoAdapter cursoAdapter;
 
-    private DadosOpenHelper dadosOpenHelper;
     private SQLiteDatabase conexao;
 
     private Mensagem mensagem;
 
-    private RecyclerView lstDadosCurso;
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_curso);
-        Toolbar toolbarCurso = (Toolbar) findViewById(R.id.toolbarCurso);
+        Toolbar toolbarCurso = findViewById(R.id.toolbarCurso);
         setSupportActionBar(toolbarCurso);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.title_curso);
         toolbarCurso.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,9 +47,9 @@ public class ActCurso extends AppCompatActivity {
         });
 
         mensagem = new Mensagem();
-        lstDadosCurso = (RecyclerView) findViewById(R.id.lstDadosCurso);
+        RecyclerView lstDadosCurso = findViewById(R.id.lstDadosCurso);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +65,7 @@ public class ActCurso extends AppCompatActivity {
 
         List<Curso> dadosCurso = cursoRepositorio.buscarTodosCursos();
 
-        cursoAdapter = new CursoAdapter(dadosCurso);
+        CursoAdapter cursoAdapter = new CursoAdapter(dadosCurso);
 
         lstDadosCurso.setAdapter(cursoAdapter);
     }
@@ -83,7 +82,7 @@ public class ActCurso extends AppCompatActivity {
 
     private void criarConexao() {
         try {
-            dadosOpenHelper = new DadosOpenHelper(this);
+            DadosOpenHelper dadosOpenHelper = new DadosOpenHelper(this);
             conexao = dadosOpenHelper.getWritableDatabase();
             cursoRepositorio = new CursoRepositorio(conexao);
         } catch (SQLException ex) {

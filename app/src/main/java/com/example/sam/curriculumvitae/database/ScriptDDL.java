@@ -2,7 +2,9 @@ package com.example.sam.curriculumvitae.database;
 
 public class ScriptDDL {
     public static String createTableInfoPessoais() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" CREATE TABLE IF NOT EXISTS INFO_PESSOAIS( ");
         sql.append("    CODIGO               INTEGER         PRIMARY KEY AUTOINCREMENT NOT NULL,");
@@ -22,7 +24,9 @@ public class ScriptDDL {
     }
 
     public static String dropTableInfoPessoais() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" DROP TABLE IF EXISTS INFO_PESSOAIS; ");
 
@@ -30,7 +34,9 @@ public class ScriptDDL {
     }
 
     public static String createTableObjetivo() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" CREATE TABLE IF NOT EXISTS OBJETIVO( ");
         sql.append("    CODIGO               INTEGER         PRIMARY KEY AUTOINCREMENT NOT NULL,");
@@ -41,7 +47,9 @@ public class ScriptDDL {
     }
 
     public static String dropTableObjetivo() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" DROP TABLE IF EXISTS OBJETIVO; ");
 
@@ -49,7 +57,9 @@ public class ScriptDDL {
     }
 
     public static String createTableFormacao() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" CREATE TABLE IF NOT EXISTS FORMACAO( ");
         sql.append("    CODIGO           INTEGER         PRIMARY KEY AUTOINCREMENT NOT NULL,");
@@ -64,7 +74,9 @@ public class ScriptDDL {
     }
 
     public static String dropTableFormacao() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" DROP TABLE IF EXISTS FORMACAO; ");
 
@@ -72,7 +84,9 @@ public class ScriptDDL {
     }
 
     public static String createTableExperiencia() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" CREATE TABLE IF NOT EXISTS EXPERIENCIA( ");
         sql.append("    CODIGO           INTEGER         PRIMARY KEY AUTOINCREMENT NOT NULL,");
@@ -88,7 +102,9 @@ public class ScriptDDL {
     }
 
     public static String dropTableExperiencia() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" DROP TABLE IF EXISTS EXPERIENCIA; ");
 
@@ -96,7 +112,9 @@ public class ScriptDDL {
     }
 
     public static String createTableCurso() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" CREATE TABLE IF NOT EXISTS CURSO( ");
         sql.append("    CODIGO           INTEGER         PRIMARY KEY AUTOINCREMENT NOT NULL,");
@@ -112,7 +130,9 @@ public class ScriptDDL {
     }
 
     public static String dropTableCurso() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" DROP TABLE IF EXISTS CURSO; ");
 
@@ -120,7 +140,9 @@ public class ScriptDDL {
     }
 
     public static String createTableQualificacao() { //Qualificações e Atividades Profissionais
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" CREATE TABLE IF NOT EXISTS QUALIFICACAO( ");
         sql.append("    CODIGO           INTEGER          PRIMARY KEY AUTOINCREMENT NOT NULL,");
@@ -132,7 +154,9 @@ public class ScriptDDL {
     }
 
     public static String dropTableQualificacao() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" DROP TABLE IF EXISTS QUALIFICACAO; ");
 
@@ -140,7 +164,9 @@ public class ScriptDDL {
     }
 
     public static String createTableIdioma() { //Qualificações e Atividades Profissionais
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" CREATE TABLE IF NOT EXISTS IDIOMA( ");
         sql.append("    CODIGO       INTEGER         PRIMARY KEY AUTOINCREMENT NOT NULL,");
@@ -152,7 +178,9 @@ public class ScriptDDL {
     }
 
     public static String dropTableIdioma() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" DROP TABLE IF EXISTS IDIOMA; ");
 
@@ -160,7 +188,9 @@ public class ScriptDDL {
     }
 
     public static String createTableApresentacao() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" CREATE TABLE IF NOT EXISTS APRESENTACAO( ");
         sql.append("    CODIGO               INTEGER         PRIMARY KEY AUTOINCREMENT NOT NULL,");
@@ -171,7 +201,9 @@ public class ScriptDDL {
     }
 
     public static String dropTableApresentacao() {
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
+
+        sql = new StringBuilder();
 
         sql.append(" DROP TABLE IF EXISTS APRESENTACAO; ");
 

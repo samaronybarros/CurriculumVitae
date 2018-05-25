@@ -3,7 +3,9 @@ package com.example.sam.curriculumvitae.activity;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -20,6 +22,8 @@ import com.example.sam.curriculumvitae.database.DadosOpenHelper;
 import com.example.sam.curriculumvitae.dominio.entidade.InfoPessoais;
 import com.example.sam.curriculumvitae.dominio.repositorio.InfoPessoaisRepositorio;
 import com.example.sam.curriculumvitae.mensagem.Mensagem;
+
+import java.util.Objects;
 
 import static com.example.sam.curriculumvitae.R.*;
 
@@ -40,18 +44,16 @@ public class ActInfoPessoais extends AppCompatActivity {
     private InfoPessoais infoPessoais;
     private InfoPessoaisRepositorio infoPessoaisRepositorio;
 
-    private DadosOpenHelper dadosOpenHelper;
-    private SQLiteDatabase conexao;
-
     private boolean flagInsereAltera; //INSERE=false / ALTERA=true
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_act_info_pessoais);
         Toolbar toolbarInfoPessoais = findViewById(id.toolbarInfoPessoais);
         setSupportActionBar(toolbarInfoPessoais);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.title_info);
         toolbarInfoPessoais.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,16 +65,16 @@ public class ActInfoPessoais extends AppCompatActivity {
         mensagem = new Mensagem();
         flagInsereAltera = false;
 
-        etNome              = (EditText) findViewById(id.etNome);
-        etNacionalidade     = (EditText) findViewById(id.etNacionalidade);
-        spEstadoCivil       = (Spinner)  findViewById(id.spEstadoCivil);
-        etCidadeNascimento  = (EditText) findViewById(id.etCidadeNascimento);
-        etDataNascimento    = (EditText) findViewById(id.etDataNascimento);
-        etTelefoneCelular   = (EditText) findViewById(id.etTelefoneCelular);
-        etTelefoneFixo      = (EditText) findViewById(id.etTelefoneFixo);
-        etEmail             = (EditText) findViewById(id.etEmail);
-        etEndereco          = (EditText) findViewById(id.etEndereco);
-        spTipoCNH           = (Spinner)  findViewById(id.spTipoCNH);
+        etNome              = findViewById(id.etNome);
+        etNacionalidade     = findViewById(id.etNacionalidade);
+        spEstadoCivil       = findViewById(id.spEstadoCivil);
+        etCidadeNascimento  = findViewById(id.etCidadeNascimento);
+        etDataNascimento    = findViewById(id.etDataNascimento);
+        etTelefoneCelular   = findViewById(id.etTelefoneCelular);
+        etTelefoneFixo      = findViewById(id.etTelefoneFixo);
+        etEmail             = findViewById(id.etEmail);
+        etEndereco          = findViewById(id.etEndereco);
+        spTipoCNH           = findViewById(id.spTipoCNH);
 
         criarConexao();
 
@@ -151,15 +153,11 @@ public class ActInfoPessoais extends AppCompatActivity {
     }
 
     private boolean isCampoVazio(String campo) {
-        boolean ret = (TextUtils.isEmpty(campo) || campo.trim().isEmpty());
-
-        return ret;
+        return (TextUtils.isEmpty(campo) || campo.trim().isEmpty());
     }
 
     private boolean isEmailValido(String email) {
-        boolean ret = (!isCampoVazio(email) && !(Patterns.EMAIL_ADDRESS.matcher(email).matches()));
-
-        return ret;
+        return (!isCampoVazio(email) && !(Patterns.EMAIL_ADDRESS.matcher(email).matches()));
     }
 
     private void confirmar() {
@@ -181,8 +179,8 @@ public class ActInfoPessoais extends AppCompatActivity {
 
     private void criarConexao() {
         try {
-            dadosOpenHelper = new DadosOpenHelper(this);
-            conexao = dadosOpenHelper.getWritableDatabase();
+            DadosOpenHelper dadosOpenHelper = new DadosOpenHelper(this);
+            SQLiteDatabase conexao = dadosOpenHelper.getWritableDatabase();
             infoPessoaisRepositorio = new InfoPessoaisRepositorio(conexao);
         } catch (SQLException ex) {
             mensagem.alert(this, getString(string.message_erro), ex.getMessage());

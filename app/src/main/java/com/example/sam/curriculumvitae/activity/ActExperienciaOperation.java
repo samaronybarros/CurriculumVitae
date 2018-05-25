@@ -3,7 +3,9 @@ package com.example.sam.curriculumvitae.activity;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -19,6 +21,8 @@ import com.example.sam.curriculumvitae.dominio.entidade.Experiencia;
 import com.example.sam.curriculumvitae.dominio.repositorio.ExperienciaRepositorio;
 import com.example.sam.curriculumvitae.mensagem.Mensagem;
 
+import java.util.Objects;
+
 public class ActExperienciaOperation extends AppCompatActivity {
     private EditText etEmpresa;
     private EditText etCargo;
@@ -31,16 +35,14 @@ public class ActExperienciaOperation extends AppCompatActivity {
     private Experiencia experiencia;
     private ExperienciaRepositorio experienciaRepositorio;
 
-    private DadosOpenHelper dadosOpenHelper;
-    private SQLiteDatabase conexao;
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_experiencia_operation);
         Toolbar toolbarExperienciaOperation = findViewById(R.id.toolbarExperienciaOperation);
         setSupportActionBar(toolbarExperienciaOperation);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.title_experiencia);
         toolbarExperienciaOperation.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,11 +53,11 @@ public class ActExperienciaOperation extends AppCompatActivity {
 
         mensagem = new Mensagem();
 
-        etEmpresa    = (EditText) findViewById(R.id.etEmpresa);
-        etCargo      = (EditText) findViewById(R.id.etCargo);
-        etDataInicio = (EditText) findViewById(R.id.etDataInicio);
-        etDataFim    = (EditText) findViewById(R.id.etDataFim);
-        etAtividades = (EditText) findViewById(R.id.etAtividades);
+        etEmpresa    = findViewById(R.id.etEmpresa);
+        etCargo      = findViewById(R.id.etCargo);
+        etDataInicio = findViewById(R.id.etDataInicio);
+        etDataFim    = findViewById(R.id.etDataFim);
+        etAtividades = findViewById(R.id.etAtividades);
 
         criarConexao();
         verificaParametro();
@@ -116,9 +118,7 @@ public class ActExperienciaOperation extends AppCompatActivity {
     }
 
     private boolean isCampoVazio(String campo) {
-        boolean ret = (TextUtils.isEmpty(campo) || campo.trim().isEmpty());
-
-        return ret;
+        return (TextUtils.isEmpty(campo) || campo.trim().isEmpty());
     }
 
     private void confirmar() {
@@ -159,8 +159,8 @@ public class ActExperienciaOperation extends AppCompatActivity {
 
     private void criarConexao() {
         try {
-            dadosOpenHelper = new DadosOpenHelper(this);
-            conexao = dadosOpenHelper.getWritableDatabase();
+            DadosOpenHelper dadosOpenHelper = new DadosOpenHelper(this);
+            SQLiteDatabase conexao = dadosOpenHelper.getWritableDatabase();
             experienciaRepositorio = new ExperienciaRepositorio(conexao);
         } catch (SQLException ex) {
             mensagem.alert(this, getString(R.string.message_erro), ex.getMessage());
@@ -189,7 +189,9 @@ public class ActExperienciaOperation extends AppCompatActivity {
         if (bundle != null && bundle.containsKey("EXPERIENCIA")) {
             experiencia = (Experiencia) bundle.getSerializable("EXPERIENCIA");
 
-            insereDados(experiencia);
+            if (experiencia != null) {
+                insereDados(experiencia);
+            }
         }
     }
 }

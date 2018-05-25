@@ -19,9 +19,7 @@ public class Experiencia implements Serializable {
     }
 
     private boolean isCampoVazio(String campo) {
-        boolean ret = (TextUtils.isEmpty(campo) || campo.trim().isEmpty());
-
-        return ret;
+        return (TextUtils.isEmpty(campo) || campo.trim().isEmpty());
     }
 
     public boolean isDataFimVazia() {

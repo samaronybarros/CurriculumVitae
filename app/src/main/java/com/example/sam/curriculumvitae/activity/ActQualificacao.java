@@ -3,14 +3,15 @@ package com.example.sam.curriculumvitae.activity;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.example.sam.curriculumvitae.R;
 import com.example.sam.curriculumvitae.adapter.QualificacaoAdapter;
@@ -20,26 +21,23 @@ import com.example.sam.curriculumvitae.dominio.repositorio.QualificacaoRepositor
 import com.example.sam.curriculumvitae.mensagem.Mensagem;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ActQualificacao extends AppCompatActivity {
-    private Qualificacao qualificacao;
     private QualificacaoRepositorio qualificacaoRepositorio;
-    private QualificacaoAdapter qualificacaoAdapter;
 
-    private DadosOpenHelper dadosOpenHelper;
     private SQLiteDatabase conexao;
 
     private Mensagem mensagem;
 
-    private RecyclerView lstDadosQualificacao;
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_qualificacao);
-        Toolbar toolbarQualificacao = (Toolbar) findViewById(R.id.toolbarQualificacao);
+        Toolbar toolbarQualificacao =  findViewById(R.id.toolbarQualificacao);
         setSupportActionBar(toolbarQualificacao);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.title_qualificacao);
         toolbarQualificacao.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,9 +47,9 @@ public class ActQualificacao extends AppCompatActivity {
         });
 
         mensagem = new Mensagem();
-        lstDadosQualificacao = (RecyclerView) findViewById(R.id.lstDadosQualificacao);
+        RecyclerView lstDadosQualificacao = findViewById(R.id.lstDadosQualificacao);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,7 +65,7 @@ public class ActQualificacao extends AppCompatActivity {
 
         List<Qualificacao> dadosQualificacao = qualificacaoRepositorio.buscarTodasQualificacoes();
 
-        qualificacaoAdapter = new QualificacaoAdapter(dadosQualificacao);
+        QualificacaoAdapter qualificacaoAdapter = new QualificacaoAdapter(dadosQualificacao);
 
         lstDadosQualificacao.setAdapter(qualificacaoAdapter);
     }
@@ -84,7 +82,7 @@ public class ActQualificacao extends AppCompatActivity {
 
     private void criarConexao() {
         try {
-            dadosOpenHelper = new DadosOpenHelper(this);
+            DadosOpenHelper dadosOpenHelper = new DadosOpenHelper(this);
             conexao = dadosOpenHelper.getWritableDatabase();
             qualificacaoRepositorio = new QualificacaoRepositorio(conexao);
         } catch (SQLException ex) {

@@ -84,13 +84,17 @@ public class FormacaoRepositorio {
             return formacao;
         }
 
+        resultado.close();
+
         return null;
     }
 
     public List<Formacao> buscarTodasFormacoes() {
-        List<Formacao> formacao = new ArrayList<Formacao>();
-        StringBuilder sql = new StringBuilder();
+        List<Formacao> formacao = new ArrayList<>();
+        StringBuilder sql;
         Cursor resultado;
+
+        sql = new StringBuilder();
 
         sql.append(" SELECT             ");
         sql.append(" CODIGO         ,   ");
@@ -120,6 +124,8 @@ public class FormacaoRepositorio {
                 formacao.add(f);
             } while (resultado.moveToNext());
         }
+
+        resultado.close();
 
         return formacao;
     }

@@ -42,8 +42,10 @@ public class ObjetivoRepositorio {
 
     public Objetivo buscar() {
         Objetivo objetivo = new Objetivo();
-        StringBuilder sql = new StringBuilder();
+        StringBuilder sql;
         Cursor resultado;
+
+        sql = new StringBuilder();
 
         sql.append(" SELECT     ");
         sql.append(" CODIGO   , ");
@@ -61,6 +63,8 @@ public class ObjetivoRepositorio {
 
             return objetivo;
         }
+
+        resultado.close();
 
         return null;
     }

@@ -30,9 +30,7 @@ public class QualificacaoAdapter extends RecyclerView.Adapter<QualificacaoAdapte
 
         View view = layoutInflater.inflate(R.layout.layout_lista_qualificacao, parent, false);
 
-        ViewHolderQualificacao viewHolderQualificacao = new ViewHolderQualificacao(view, parent.getContext());
-
-        return viewHolderQualificacao;
+        return new ViewHolderQualificacao(view, parent.getContext());
     }
 
     @Override
@@ -54,11 +52,11 @@ public class QualificacaoAdapter extends RecyclerView.Adapter<QualificacaoAdapte
         public TextView tvAtividade;
         public TextView tvDescricao;
 
-        public ViewHolderQualificacao(View itemView, final Context context) {
+        private ViewHolderQualificacao(View itemView, final Context context) {
             super(itemView);
 
-            tvAtividade = (TextView) itemView.findViewById(R.id.tvAtividade);
-            tvDescricao = (TextView) itemView.findViewById(R.id.tvDescricao);
+            tvAtividade = itemView.findViewById(R.id.tvAtividade);
+            tvDescricao = itemView.findViewById(R.id.tvDescricao);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

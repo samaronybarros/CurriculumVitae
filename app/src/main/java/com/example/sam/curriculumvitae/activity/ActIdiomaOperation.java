@@ -3,7 +3,9 @@ package com.example.sam.curriculumvitae.activity;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -20,6 +22,8 @@ import com.example.sam.curriculumvitae.dominio.entidade.Idioma;
 import com.example.sam.curriculumvitae.dominio.repositorio.IdiomaRepositorio;
 import com.example.sam.curriculumvitae.mensagem.Mensagem;
 
+import java.util.Objects;
+
 public class ActIdiomaOperation extends AppCompatActivity {
     private EditText etIdioma;
     private Spinner  spNivel;
@@ -29,16 +33,14 @@ public class ActIdiomaOperation extends AppCompatActivity {
     private Idioma idioma;
     private IdiomaRepositorio idiomaRepositorio;
 
-    private DadosOpenHelper dadosOpenHelper;
-    private SQLiteDatabase conexao;
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_idioma_operation);
         Toolbar toolbarIdiomaOperation = findViewById(R.id.toolbarIdiomaOperation);
         setSupportActionBar(toolbarIdiomaOperation);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.title_idioma);
         toolbarIdiomaOperation.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,8 +51,8 @@ public class ActIdiomaOperation extends AppCompatActivity {
 
         mensagem = new Mensagem();
 
-        etIdioma  = (EditText) findViewById(R.id.etIdioma);
-        spNivel   = (Spinner) findViewById(R.id.spNivel);
+        etIdioma  = findViewById(R.id.etIdioma);
+        spNivel   = findViewById(R.id.spNivel);
 
         criarConexao();
         verificaParametro();
@@ -101,9 +103,7 @@ public class ActIdiomaOperation extends AppCompatActivity {
     }
 
     private boolean isCampoVazio(String campo) {
-        boolean ret = (TextUtils.isEmpty(campo) || campo.trim().isEmpty());
-
-        return ret;
+        return (TextUtils.isEmpty(campo) || campo.trim().isEmpty());
     }
 
     private void confirmar() {
@@ -144,8 +144,8 @@ public class ActIdiomaOperation extends AppCompatActivity {
 
     private void criarConexao() {
         try {
-            dadosOpenHelper = new DadosOpenHelper(this);
-            conexao = dadosOpenHelper.getWritableDatabase();
+            DadosOpenHelper dadosOpenHelper = new DadosOpenHelper(this);
+            SQLiteDatabase conexao = dadosOpenHelper.getWritableDatabase();
             idiomaRepositorio = new IdiomaRepositorio(conexao);
         } catch (SQLException ex) {
             mensagem.alert(this, getString(R.string.message_erro), ex.getMessage());
@@ -187,7 +187,9 @@ public class ActIdiomaOperation extends AppCompatActivity {
         if (bundle != null && bundle.containsKey("IDIOMA")) {
             idioma = (Idioma) bundle.getSerializable("IDIOMA");
 
-            insereDados(idioma);
+            if (idioma != null) {
+                insereDados(idioma);
+            }
         }
     }
 }

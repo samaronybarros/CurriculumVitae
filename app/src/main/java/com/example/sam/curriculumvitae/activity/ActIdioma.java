@@ -3,14 +3,15 @@ package com.example.sam.curriculumvitae.activity;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.example.sam.curriculumvitae.R;
 import com.example.sam.curriculumvitae.adapter.IdiomaAdapter;
@@ -20,26 +21,23 @@ import com.example.sam.curriculumvitae.dominio.repositorio.IdiomaRepositorio;
 import com.example.sam.curriculumvitae.mensagem.Mensagem;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ActIdioma extends AppCompatActivity {
-    private Idioma idioma;
     private IdiomaRepositorio idiomaRepositorio;
-    private IdiomaAdapter idiomaAdapter;
 
-    private DadosOpenHelper dadosOpenHelper;
     private SQLiteDatabase conexao;
 
     private Mensagem mensagem;
 
-    private RecyclerView lstDadosIdioma;
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_idioma);
-        Toolbar toolbarIdioma = (Toolbar) findViewById(R.id.toolbarIdioma);
+        Toolbar toolbarIdioma = findViewById(R.id.toolbarIdioma);
         setSupportActionBar(toolbarIdioma);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.title_idioma);
         toolbarIdioma.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,9 +47,9 @@ public class ActIdioma extends AppCompatActivity {
         });
 
         mensagem = new Mensagem();
-        lstDadosIdioma = (RecyclerView) findViewById(R.id.lstDadosIdioma);
+        RecyclerView lstDadosIdioma = findViewById(R.id.lstDadosIdioma);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,7 +65,7 @@ public class ActIdioma extends AppCompatActivity {
 
         List<Idioma> dadosIdioma = idiomaRepositorio.buscarTodosIdiomas();
 
-        idiomaAdapter = new IdiomaAdapter(dadosIdioma);
+        IdiomaAdapter idiomaAdapter = new IdiomaAdapter(dadosIdioma);
 
         lstDadosIdioma.setAdapter(idiomaAdapter);
     }
@@ -84,7 +82,7 @@ public class ActIdioma extends AppCompatActivity {
 
     private void criarConexao() {
         try {
-            dadosOpenHelper = new DadosOpenHelper(this);
+            DadosOpenHelper dadosOpenHelper = new DadosOpenHelper(this);
             conexao = dadosOpenHelper.getWritableDatabase();
             idiomaRepositorio = new IdiomaRepositorio(conexao);
         } catch (SQLException ex) {

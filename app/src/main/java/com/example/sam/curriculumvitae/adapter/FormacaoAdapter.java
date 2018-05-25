@@ -30,9 +30,7 @@ public class FormacaoAdapter extends RecyclerView.Adapter<FormacaoAdapter.ViewHo
 
         View view = layoutInflater.inflate(R.layout.layout_lista_formacao, parent, false);
 
-        ViewHolderFormacao viewHolderFormacao = new ViewHolderFormacao(view, parent.getContext());
-
-        return viewHolderFormacao;
+        return new ViewHolderFormacao(view, parent.getContext());
     }
 
     @Override
@@ -54,11 +52,11 @@ public class FormacaoAdapter extends RecyclerView.Adapter<FormacaoAdapter.ViewHo
         public TextView tvFormacao;
         public TextView tvInstituicao;
 
-        public ViewHolderFormacao(View itemView, final Context context) {
+        private ViewHolderFormacao(View itemView, final Context context) {
             super(itemView);
 
-            tvFormacao = (TextView) itemView.findViewById(R.id.tvFormacao);
-            tvInstituicao = (TextView) itemView.findViewById(R.id.tvInstituicao);
+            tvFormacao = itemView.findViewById(R.id.tvFormacao);
+            tvInstituicao = itemView.findViewById(R.id.tvInstituicao);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

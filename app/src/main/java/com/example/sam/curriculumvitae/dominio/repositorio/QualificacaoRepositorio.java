@@ -72,13 +72,17 @@ public class QualificacaoRepositorio {
             return qualificacao;
         }
 
+        resultado.close();
+
         return null;
     }
 
     public List<Qualificacao> buscarTodasQualificacoes() {
-        List<Qualificacao> qualificacao = new ArrayList<Qualificacao>();
-        StringBuilder sql = new StringBuilder();
+        List<Qualificacao> qualificacao = new ArrayList<>();
+        StringBuilder sql;
         Cursor resultado;
+
+        sql = new StringBuilder();
 
         sql.append(" SELECT             ");
         sql.append(" CODIGO      ,   ");
@@ -102,6 +106,8 @@ public class QualificacaoRepositorio {
                 qualificacao.add(q);
             } while (resultado.moveToNext());
         }
+
+        resultado.close();
 
         return qualificacao;
     }

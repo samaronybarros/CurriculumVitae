@@ -1,7 +1,6 @@
 package com.example.sam.curriculumvitae.curriculo;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
@@ -48,7 +47,6 @@ public class CriarPDF {
     private List<Qualificacao> qualificacao;
     private List<Idioma> idioma;
 
-    private DadosOpenHelper dadosOpenHelper;
     private SQLiteDatabase conexao;
 
     private Context context;
@@ -67,7 +65,7 @@ public class CriarPDF {
         String ret;
         int pageCount;
         int linha = 800;
-        int salto = 20;
+        int salto;
         int prox = 0;
 
         int font10 = 10;
@@ -82,9 +80,9 @@ public class CriarPDF {
             pdfWriter.addText(100, linha, font20, infoPessoais.nome.toUpperCase());
 
             prox = 50;
-            pdfWriter.addText(020, linha - prox, font10, context.getString(R.string.cv_endereco)); prox += 10;
-            pdfWriter.addText(020, linha - prox, font10, context.getString(R.string.cv_nascimento)); prox += 10;
-            pdfWriter.addText(020, linha - prox, font10, context.getString(R.string.cv_nacionalidade));
+            pdfWriter.addText(20, linha - prox, font10, context.getString(R.string.cv_endereco)); prox += 10;
+            pdfWriter.addText(20, linha - prox, font10, context.getString(R.string.cv_nascimento)); prox += 10;
+            pdfWriter.addText(20, linha - prox, font10, context.getString(R.string.cv_nacionalidade));
             prox = 50;
             pdfWriter.addText(300, linha - prox, font10, context.getString(R.string.cv_telefone)); prox += 10;
             pdfWriter.addText(300, linha - prox, font10, context.getString(R.string.cv_celular)); prox += 10;
@@ -107,14 +105,14 @@ public class CriarPDF {
             prox += 30;
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_BOLD, StandardFonts.WIN_ANSI_ENCODING);
 
-            pdfWriter.addText(020, linha - prox, font18, context.getString(R.string.cv_objetivo)); prox += 10;
-            pdfWriter.addLine(020, linha - prox, 540, linha - prox);
+            pdfWriter.addText(20, linha - prox, font18, context.getString(R.string.cv_objetivo)); prox += 10;
+            pdfWriter.addLine(20, linha - prox, 540, linha - prox);
 
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_ROMAN, StandardFonts.WIN_ANSI_ENCODING);
 
             prox += 20;
             if (objetivo.descricao.length() < 100) {
-                pdfWriter.addText(20, linha - prox, font10, objetivo.descricao.substring(000, objetivo.descricao.length()));
+                pdfWriter.addText(20, linha - prox, font10, objetivo.descricao.substring(0, objetivo.descricao.length()));
             } else if (objetivo.descricao.length() < 200) {
                 pdfWriter.addText(20, linha - prox, font10, objetivo.descricao.substring(0, 100)); prox += 10;
                 pdfWriter.addText(20, linha - prox, font10, objetivo.descricao.substring(101, objetivo.descricao.length()));
@@ -130,8 +128,8 @@ public class CriarPDF {
             prox += 30;
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_BOLD, StandardFonts.WIN_ANSI_ENCODING);
 
-            pdfWriter.addText(020, linha - prox, font18, context.getString(R.string.cv_formacao)); prox += 10;
-            pdfWriter.addLine(020, linha - prox, 540, linha - prox);
+            pdfWriter.addText(20, linha - prox, font18, context.getString(R.string.cv_formacao)); prox += 10;
+            pdfWriter.addLine(20, linha - prox, 540, linha - prox);
 
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_ROMAN, StandardFonts.WIN_ANSI_ENCODING);
 
@@ -158,8 +156,8 @@ public class CriarPDF {
             prox += 30;
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_BOLD, StandardFonts.WIN_ANSI_ENCODING);
 
-            pdfWriter.addText(020, linha - prox, font18, context.getString(R.string.cv_experiencia)); prox += 10;
-            pdfWriter.addLine(020, linha - prox, 540, linha - prox);
+            pdfWriter.addText(20, linha - prox, font18, context.getString(R.string.cv_experiencia)); prox += 10;
+            pdfWriter.addLine(20, linha - prox, 540, linha - prox);
 
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_ROMAN, StandardFonts.WIN_ANSI_ENCODING);
 
@@ -202,8 +200,8 @@ public class CriarPDF {
             prox += 30;
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_BOLD, StandardFonts.WIN_ANSI_ENCODING);
 
-            pdfWriter.addText(020, linha - prox, font18, context.getString(R.string.cv_curso)); prox += 10;
-            pdfWriter.addLine(020, linha - prox, 540, linha - prox);
+            pdfWriter.addText(20, linha - prox, font18, context.getString(R.string.cv_curso)); prox += 10;
+            pdfWriter.addLine(20, linha - prox, 540, linha - prox);
 
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_ROMAN, StandardFonts.WIN_ANSI_ENCODING);
 
@@ -230,8 +228,8 @@ public class CriarPDF {
             prox += 30;
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_BOLD, StandardFonts.WIN_ANSI_ENCODING);
 
-            pdfWriter.addText(020, linha - prox, font18, context.getString(R.string.cv_qualificacao)); prox += 10;
-            pdfWriter.addLine(020, linha - prox, 540, linha - prox);
+            pdfWriter.addText(20, linha - prox, font18, context.getString(R.string.cv_qualificacao)); prox += 10;
+            pdfWriter.addLine(20, linha - prox, 540, linha - prox);
 
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_ROMAN, StandardFonts.WIN_ANSI_ENCODING);
 
@@ -253,8 +251,8 @@ public class CriarPDF {
             prox += 30;
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_BOLD, StandardFonts.WIN_ANSI_ENCODING);
 
-            pdfWriter.addText(020, linha - prox, font18, context.getString(R.string.cv_idioma)); prox += 10;
-            pdfWriter.addLine(020, linha - prox, 540, linha - prox);
+            pdfWriter.addText(20, linha - prox, font18, context.getString(R.string.cv_idioma)); prox += 10;
+            pdfWriter.addLine(20, linha - prox, 540, linha - prox);
 
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_ROMAN, StandardFonts.WIN_ANSI_ENCODING);
 
@@ -302,7 +300,7 @@ public class CriarPDF {
         return nomeArquivo;
     }
 
-    public void montaEstruturaCurriculo() {
+    private void montaEstruturaCurriculo() {
         criarConexao();
 
         getInfoPessoais();
@@ -316,14 +314,14 @@ public class CriarPDF {
 
     private void criarConexao() {
         try {
-            dadosOpenHelper = new DadosOpenHelper(context);
+            DadosOpenHelper dadosOpenHelper = new DadosOpenHelper(context);
             conexao = dadosOpenHelper.getWritableDatabase();
         } catch (SQLException ex) {
             mensagem.alert(context, context.getString(R.string.message_erro), ex.getMessage());
         }
     }
 
-    public void getInfoPessoais() {
+    private void getInfoPessoais() {
         InfoPessoaisRepositorio infoPessoaisRepositorio;
 
         infoPessoais = new InfoPessoais();
@@ -332,7 +330,7 @@ public class CriarPDF {
         infoPessoais = infoPessoaisRepositorio.buscar();
     }
 
-    public void getObjetivo() {
+    private void getObjetivo() {
         ObjetivoRepositorio objetivoRepositorio;
 
         objetivo = new Objetivo();
@@ -341,49 +339,48 @@ public class CriarPDF {
         objetivo = objetivoRepositorio.buscar();
     }
 
-    public void getFormacao() {
+    private void getFormacao() {
         FormacaoRepositorio formacaoRepositorio;
 
-        formacao = new ArrayList<Formacao>();
+        formacao = new ArrayList<>();
         formacaoRepositorio = new FormacaoRepositorio(conexao);
 
         formacao = formacaoRepositorio.buscarTodasFormacoes();
     }
 
-    public void getExperiencia() {
+    private void getExperiencia() {
         ExperienciaRepositorio experienciaRepositorio;
 
-        experiencia = new ArrayList<Experiencia>();
+        experiencia = new ArrayList<>();
         experienciaRepositorio = new ExperienciaRepositorio(conexao);
 
         experiencia = experienciaRepositorio.buscarTodasExperiencias();
     }
 
-    public void getCurso() {
+    private void getCurso() {
         CursoRepositorio cursoRepositorio;
 
-        curso = new ArrayList<Curso>();
+        curso = new ArrayList<>();
         cursoRepositorio = new CursoRepositorio(conexao);
 
         curso = cursoRepositorio.buscarTodosCursos();
     }
 
-    public void getQualificacao() {
+    private void getQualificacao() {
         QualificacaoRepositorio qualificacaoRepositorio;
 
-        qualificacao = new ArrayList<Qualificacao>();
+        qualificacao = new ArrayList<>();
         qualificacaoRepositorio = new QualificacaoRepositorio(conexao);
 
         qualificacao = qualificacaoRepositorio.buscarTodasQualificacoes();
     }
 
-    public void getIdioma() {
+    private void getIdioma() {
         IdiomaRepositorio idiomaRepositorio;
 
-        idioma = new ArrayList<Idioma>();
+        idioma = new ArrayList<>();
         idiomaRepositorio = new IdiomaRepositorio(conexao);
 
         idioma = idiomaRepositorio.buscarTodosIdiomas();
     }
-
 }
