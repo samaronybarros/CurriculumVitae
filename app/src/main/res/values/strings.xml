@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CurriculumVitae</string>
+    <string name="app_name">Curriculum Vitae</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -45,7 +45,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_act_tela_inicial">ActTelaInicial</string>
+    <string name="title_activity_act_tela_inicial">Curriculum Vitae</string>
     <string name="title_activity_act_curso">ActCurso</string>
     <string name="title_activity_act_curso_operation">ActCursoOperation</string>
     <string name="title_activity_act_qualificacao">ActQualificacao</string>
@@ -66,5 +66,6 @@
     <string name="cv_curso">Cursos Extracurriculares</string>
     <string name="cv_qualificacao">Qualificações e Atividades Profissionais</string>
     <string name="cv_idioma">Idiomas</string>
+    <string name="message_programa_adequado_pdf">Você não possui programa adequado para abrir PDF</string>
 
 </resources>

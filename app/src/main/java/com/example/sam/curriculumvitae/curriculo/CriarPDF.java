@@ -124,7 +124,7 @@ public class CriarPDF {
         }
 
         //Formação
-        if (formacao != null) {
+        if (formacao != null && formacao.size() > 0) {
             prox += 30;
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_BOLD, StandardFonts.WIN_ANSI_ENCODING);
 
@@ -152,7 +152,7 @@ public class CriarPDF {
         }
 
         //Experiência
-        if (experiencia != null) {
+        if (experiencia != null && experiencia.size() > 0) {
             prox += 30;
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_BOLD, StandardFonts.WIN_ANSI_ENCODING);
 
@@ -196,7 +196,7 @@ public class CriarPDF {
         }
 
         //Cursos
-        if (curso != null) {
+        if (curso != null && curso.size() > 0) {
             prox += 30;
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_BOLD, StandardFonts.WIN_ANSI_ENCODING);
 
@@ -224,7 +224,7 @@ public class CriarPDF {
         }
 
         //Qualificação
-        if (qualificacao != null) {
+        if (qualificacao != null && qualificacao.size() > 0) {
             prox += 30;
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_BOLD, StandardFonts.WIN_ANSI_ENCODING);
 
@@ -247,7 +247,7 @@ public class CriarPDF {
         }
 
         //Idioma
-        if (idioma != null) {
+        if (idioma != null && idioma.size() > 0) {
             prox += 30;
             pdfWriter.setFont(StandardFonts.SUBTYPE, StandardFonts.TIMES_BOLD, StandardFonts.WIN_ANSI_ENCODING);
 
